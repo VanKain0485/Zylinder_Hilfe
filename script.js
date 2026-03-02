@@ -64,7 +64,7 @@ function createHeightRod() {
     new THREE.CylinderGeometry(0.04, 0.04, 2.4, 16),
     new THREE.MeshStandardMaterial({ color: '#047857' })
   );
-  rod.position.set(1.2, 0, 0);
+  rod.position.set(1.02, 0, 0);
   return rod;
 }
 
@@ -207,7 +207,7 @@ initModel({
   legendId: 'legendControls',
   calloutLabels: false,
   featureConfig: {
-    height: { object: model1Height, anchor: new THREE.Vector3(1.2, 0.15, 0), label: 'Höhe', className: 'height' },
+    height: { object: model1Height, anchor: new THREE.Vector3(1.05, 0.15, 0), label: 'Höhe', className: 'height' },
     base: { object: model1Base, anchor: new THREE.Vector3(0, -1.3, 0), label: 'Grundfläche', className: 'base' }
   }
 });
@@ -237,7 +237,7 @@ initModel({
   legendId: 'legendControls2',
   calloutLabels: true,
   featureConfig: {
-    height: { object: model2Height, anchor: new THREE.Vector3(1.2, 0.15, 0), label: 'Höhe h', className: 'height' },
+    height: { object: model2Height, anchor: new THREE.Vector3(1.05, 0.15, 0), label: 'Höhe h', className: 'height' },
     base: { object: model2Base, anchor: new THREE.Vector3(0, -1.3, 0), label: 'Grundfläche', className: 'base', showTag: false },
     center: { object: centerPoint, anchor: new THREE.Vector3(0, -1.12, 0), label: 'Mittelpunkt M', className: 'center' },
     diameter: { object: diameterLine, anchor: new THREE.Vector3(0.55, -1.02, 0), label: 'Durchmesser d', className: 'diameter' },
