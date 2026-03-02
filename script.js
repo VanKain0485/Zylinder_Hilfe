@@ -77,7 +77,7 @@ function projectToScreen(vector3, camera, container) {
   };
 }
 
-function initModel({ containerId, overlayId, legendId, featureConfig, externalLabels = false }) {
+function initModel({ containerId, overlayId, legendId, featureConfig, calloutLabels = false }) {
   const container = document.getElementById(containerId);
   const overlay = document.getElementById(overlayId);
   const legend = document.getElementById(legendId);
@@ -89,21 +89,25 @@ function initModel({ containerId, overlayId, legendId, featureConfig, externalLa
   for (const [key, cfg] of Object.entries(featureConfig)) {
     scene.add(cfg.object);
     cfg.object.visible = false;
+
     const tag = document.createElement('div');
-    tag.className = `model-tag ${cfg.className} ${externalLabels ? 'outside' : ''} hidden`; 
+    tag.className = `model-tag ${cfg.className} hidden`;
     tag.textContent = cfg.label;
     overlay.appendChild(tag);
-    features[key] = { ...cfg, active: false, tag };
+
+    const arrow = document.createElement('div');
+    arrow.className = `model-arrow ${cfg.className} hidden`;
+    overlay.appendChild(arrow);
+
+    features[key] = { ...cfg, active: false, tag, arrow };
   }
 
   function updateFeature(key) {
     const feature = features[key];
     feature.object.visible = feature.active;
-    if (feature.showTag !== false) {
-      feature.tag.classList.toggle('hidden', !feature.active);
-    } else {
-      feature.tag.classList.add('hidden');
-    }
+    const showTag = feature.active && feature.showTag !== false;
+    feature.tag.classList.toggle('hidden', !showTag);
+    feature.arrow.classList.toggle('hidden', !showTag);
     legend.querySelector(`.legend-btn[data-key="${key}"]`)?.classList.toggle('active', feature.active);
   }
 
@@ -131,21 +135,48 @@ function initModel({ containerId, overlayId, legendId, featureConfig, externalLa
     }
   });
 
+  function placeCallout(feature, pos, index) {
+    const rightInset = container.clientWidth - 12;
+    const targetY = 42 + index * 46;
+    const y = Math.min(container.clientHeight - 18, Math.max(18, targetY));
+
+    feature.tag.style.left = `${rightInset}px`;
+    feature.tag.style.top = `${y}px`;
+
+    const endX = rightInset - 8;
+    const endY = y;
+    const dx = endX - pos.x;
+    const dy = endY - pos.y;
+    const length = Math.hypot(dx, dy);
+    const angle = Math.atan2(dy, dx) * (180 / Math.PI);
+
+    feature.arrow.style.left = `${pos.x}px`;
+    feature.arrow.style.top = `${pos.y}px`;
+    feature.arrow.style.width = `${Math.max(8, length)}px`;
+    feature.arrow.style.transform = `rotate(${angle}deg)`;
+  }
+
   function animate() {
     requestAnimationFrame(animate);
     controls.update();
 
+    let calloutIndex = 0;
     for (const feature of Object.values(features)) {
       if (!feature.active || feature.showTag === false) {
         continue;
       }
+
       const pos = projectToScreen(feature.anchor, camera, container);
-      if (!externalLabels) {
+      if (!calloutLabels) {
         feature.tag.style.left = `${pos.x}px`;
+        feature.tag.style.top = `${Math.min(container.clientHeight - 18, Math.max(18, pos.y))}px`;
+      } else {
+        placeCallout(feature, pos, calloutIndex);
+        calloutIndex += 1;
       }
-      const y = Math.min(container.clientHeight - 18, Math.max(18, pos.y));
-      feature.tag.style.top = `${y}px`;
+
       feature.tag.style.opacity = pos.visible ? '1' : '0';
+      feature.arrow.style.opacity = pos.visible ? '1' : '0';
     }
 
     renderer.render(scene, camera);
@@ -173,7 +204,7 @@ initModel({
   containerId: 'modelContainer',
   overlayId: 'modelOverlay',
   legendId: 'legendControls',
-  externalLabels: false,
+  calloutLabels: false,
   featureConfig: {
     height: { object: model1Height, anchor: new THREE.Vector3(1.2, 0.15, 0), label: 'Höhe', className: 'height' },
     base: { object: model1Base, anchor: new THREE.Vector3(0, -1.3, 0), label: 'Grundfläche', className: 'base' }
@@ -188,7 +219,7 @@ const model2Base = new THREE.Mesh(
 model2Base.rotation.x = -Math.PI / 2;
 model2Base.position.y = -1.205;
 
-const centerPoint = new THREE.Mesh(new THREE.SphereGeometry(0.07, 20, 20), new THREE.MeshStandardMaterial({ color: '#7c3aed' }));
+const centerPoint = new THREE.Mesh(new THREE.SphereGeometry(0.075, 20, 20), new THREE.MeshStandardMaterial({ color: '#ec4899' }));
 centerPoint.position.set(0, -1.2, 0);
 
 const diameterLine = new THREE.Mesh(new THREE.CylinderGeometry(0.02, 0.02, 2, 16), new THREE.MeshStandardMaterial({ color: '#dc2626' }));
@@ -203,12 +234,12 @@ initModel({
   containerId: 'modelContainer2',
   overlayId: 'modelOverlay2',
   legendId: 'legendControls2',
-  externalLabels: true,
+  calloutLabels: true,
   featureConfig: {
     height: { object: model2Height, anchor: new THREE.Vector3(1.2, 0.15, 0), label: 'Höhe h', className: 'height' },
     base: { object: model2Base, anchor: new THREE.Vector3(0, -1.3, 0), label: 'Grundfläche', className: 'base', showTag: false },
     center: { object: centerPoint, anchor: new THREE.Vector3(0, -1.12, 0), label: 'Mittelpunkt m', className: 'center' },
     diameter: { object: diameterLine, anchor: new THREE.Vector3(0, -1.02, 0), label: 'Durchmesser d', className: 'diameter' },
-    radius: { object: radiusLine, anchor: new THREE.Vector3(0.48, -1.02, 0), label: 'Radius r', className: 'radius' }
+    radius: { object: radiusLine, anchor: new THREE.Vector3(0.0, -1.02, 0.5), label: 'Radius r', className: 'radius' }
   }
 });

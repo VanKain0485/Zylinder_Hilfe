@@ -7,7 +7,7 @@
   --ok: #0f766e;
   --height-color: #047857;
   --base-color: #d97706;
-  --center-color: #7c3aed;
+  --center-color: #ec4899;
   --diameter-color: #dc2626;
   --radius-color: #0ea5e9;
 }
@@ -59,19 +59,30 @@ h2 { margin-top: 0; }
 .model-tag.radius { border-color: var(--radius-color); }
 
 
-#modelContainer2 {
-  overflow: visible;
+.model-arrow {
+  position: absolute;
+  height: 2px;
+  transform-origin: 0 50%;
+  pointer-events: none;
 }
+.model-arrow::after {
+  content: '';
+  position: absolute;
+  right: -1px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-left: 6px solid currentColor;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+}
+.model-arrow.height { background: var(--height-color); color: var(--height-color); }
+.model-arrow.base { background: var(--base-color); color: var(--base-color); }
+.model-arrow.center { background: var(--center-color); color: var(--center-color); }
+.model-arrow.diameter { background: var(--diameter-color); color: var(--diameter-color); }
+.model-arrow.radius { background: var(--radius-color); color: var(--radius-color); }
 
-.model-tag.outside {
-  left: calc(100% + 14px) !important;
-  transform: translate(0, -50%);
-}
 
-.model-tag.outside::before {
-  content: "← ";
-  font-weight: 700;
-}
+
 
 .legend { margin-top: 0.8rem; display: flex; flex-wrap: wrap; gap: 0.5rem; }
 .legend-btn {
