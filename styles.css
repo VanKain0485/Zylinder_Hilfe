@@ -27,7 +27,7 @@ body {
 }
 
 main {
-  max-width: 900px;
+  max-width: 980px;
   margin: 1.5rem auto;
   padding: 0 1rem 2rem;
 }
@@ -37,7 +37,8 @@ h2 {
 }
 
 .worksheet-box,
-.check-box {
+.check-box,
+.model-box {
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: 14px;
@@ -54,6 +55,40 @@ h2 {
 
 .small {
   margin-top: -0.4rem;
+}
+
+.model-container {
+  position: relative;
+  width: 100%;
+  height: 360px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: linear-gradient(180deg, #e2e8f0 0%, #f8fafc 100%);
+  overflow: hidden;
+}
+
+.model-container canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.model-labels {
+  position: relative;
+  margin-top: 0.8rem;
+  min-height: 2rem;
+}
+
+.label {
+  display: inline-block;
+  margin-right: 0.5rem;
+  margin-top: 0.3rem;
+  padding: 0.3rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  background: #dbeafe;
+  color: #1e3a8a;
+  border: 1px solid #93c5fd;
 }
 
 .card-grid {

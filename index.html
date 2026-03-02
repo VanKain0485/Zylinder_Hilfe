@@ -27,6 +27,17 @@
       <p class="goal">Ziel: Am Ende sollst du die Formel <strong>V = π · r² · h</strong> begründen können.</p>
     </section>
 
+    <section class="model-box">
+      <h2>Interaktives 3D-Modell</h2>
+      <p class="small">Mit der Maus oder dem Finger ziehen, um den Zylinder zu drehen. Mit dem Mausrad zoomen. Klicke auf den Zylinder, um Beschriftungen ein-/auszublenden.</p>
+      <div id="modelContainer" class="model-container" aria-label="Interaktives 3D-Modell eines Zylinders"></div>
+      <div id="modelLabels" class="model-labels hidden" aria-live="polite">
+        <span class="label radius">Radius r</span>
+        <span class="label height">Höhe h</span>
+        <span class="label base">Grundfläche A = π · r²</span>
+      </div>
+    </section>
+
     <section>
       <h2>Tipp-Karten</h2>
       <p class="small">Klicke auf eine Karte, um einen Tipp anzuzeigen.</p>
@@ -56,6 +67,6 @@
     <p>Viel Erfolg beim Herleiten! 💡</p>
   </footer>
 
-  <script src="script.js"></script>
+  <script type="module" src="script.js"></script>
 </body>
 </html>
