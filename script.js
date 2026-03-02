@@ -27,7 +27,7 @@ showSolutionButton.addEventListener('click', () => {
   showSolutionButton.textContent = solution.classList.contains('hidden') ? 'Musterlösung einblenden' : 'Musterlösung ausblenden';
 });
 
-function buildCommonScene(container, overlay) {
+function buildCommonScene(container, overlay, showEdges = true) {
   const scene = new THREE.Scene();
   scene.background = new THREE.Color('#f8fafc');
 
@@ -54,7 +54,9 @@ function buildCommonScene(container, overlay) {
   const cylinderGeometry = new THREE.CylinderGeometry(1, 1, 2.4, 64);
   const cylinder = new THREE.Mesh(cylinderGeometry, new THREE.MeshStandardMaterial({ color: '#3b82f6', roughness: 0.32, metalness: 0.15 }));
   scene.add(cylinder);
-  scene.add(new THREE.LineSegments(new THREE.EdgesGeometry(cylinderGeometry), new THREE.LineBasicMaterial({ color: '#1e3a8a' })));
+  if (showEdges) {
+    scene.add(new THREE.LineSegments(new THREE.EdgesGeometry(cylinderGeometry), new THREE.LineBasicMaterial({ color: '#1e3a8a' })));
+  }
 
   return { scene, camera, renderer, controls, cylinder };
 }
@@ -77,13 +79,13 @@ function projectToScreen(vector3, camera, container) {
   };
 }
 
-function initModel({ containerId, overlayId, legendId, featureConfig, calloutLabels = false }) {
+function initModel({ containerId, overlayId, legendId, featureConfig, calloutLabels = false, showEdges = true }) {
   const container = document.getElementById(containerId);
   const overlay = document.getElementById(overlayId);
   const legend = document.getElementById(legendId);
   const buttons = legend.querySelectorAll('.legend-btn');
 
-  const { scene, camera, renderer, controls } = buildCommonScene(container, overlay);
+  const { scene, camera, renderer, controls } = buildCommonScene(container, overlay, showEdges);
 
   const features = {};
   for (const [key, cfg] of Object.entries(featureConfig)) {
@@ -206,6 +208,7 @@ initModel({
   overlayId: 'modelOverlay',
   legendId: 'legendControls',
   calloutLabels: false,
+  showEdges: false,
   featureConfig: {
     height: { object: model1Height, anchor: new THREE.Vector3(0.98, 0.15, 0), label: 'Höhe', className: 'height' },
     base: { object: model1Base, anchor: new THREE.Vector3(0, -1.3, 0), label: 'Grundfläche', className: 'base' }
@@ -236,6 +239,7 @@ initModel({
   overlayId: 'modelOverlay2',
   legendId: 'legendControls2',
   calloutLabels: true,
+  showEdges: true,
   featureConfig: {
     height: { object: model2Height, anchor: new THREE.Vector3(0.98, 0.15, 0), label: 'Höhe h', className: 'height' },
     base: { object: model2Base, anchor: new THREE.Vector3(0, -1.3, 0), label: 'Grundfläche', className: 'base', showTag: false },
