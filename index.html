@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zylinderhilfe – Herleitung für die 8. Klasse</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="hero">
+    <h1>Zylinderformel selbst herleiten</h1>
+    <p>
+      Willkommen! Nutze die Tipp-Karten, um Schritt für Schritt die Formel für das Volumen eines Zylinders
+      zu entdecken. Klicke immer erst dann auf eine Karte, wenn du wirklich einen Hinweis brauchst.
+    </p>
+  </header>
+
+  <main>
+    <section class="worksheet-box">
+      <h2>Arbeitsauftrag</h2>
+      <ol>
+        <li>Zeichne einen Zylinder und markiere <strong>Radius r</strong> und <strong>Höhe h</strong>.</li>
+        <li>Überlege: Aus welcher ebenen Figur besteht die Grundfläche?</li>
+        <li>Erinnere dich an die Formel für diese Fläche.</li>
+        <li>Kombiniere Grundfläche und Höhe zu einer Volumenformel.</li>
+      </ol>
+      <p class="goal">Ziel: Am Ende sollst du die Formel <strong>V = π · r² · h</strong> begründen können.</p>
+    </section>
+
+    <section>
+      <h2>Tipp-Karten</h2>
+      <p class="small">Klicke auf eine Karte, um einen Tipp anzuzeigen.</p>
+      <div class="card-grid" id="tipGrid"></div>
+    </section>
+
+    <section class="check-box">
+      <h2>Selbst-Check</h2>
+      <p>Wenn du fertig bist, beantworte diese Fragen:</p>
+      <ul>
+        <li>Warum kommt in der Formel ein <strong>r²</strong> vor?</li>
+        <li>Warum wird mit <strong>h</strong> multipliziert?</li>
+        <li>Welche Einheit hat das Volumen? (z. B. cm³)</li>
+      </ul>
+      <button id="showSolution" type="button">Musterlösung einblenden</button>
+      <div id="solution" class="solution hidden" aria-live="polite">
+        <p>
+          Die Grundfläche des Zylinders ist ein Kreis mit <strong>A = π · r²</strong>. Ein Zylinder besteht aus
+          vielen solchen Kreisflächen, die übereinandergestapelt werden – und zwar über die Höhe <strong>h</strong>.
+          Deshalb gilt für das Volumen: <strong>V = Grundfläche · Höhe = π · r² · h</strong>.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Viel Erfolg beim Herleiten! 💡</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

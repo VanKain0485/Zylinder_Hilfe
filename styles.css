@@ -1,0 +1,133 @@
+:root {
+  --bg: #f4f7fb;
+  --text: #1f2a37;
+  --primary: #2563eb;
+  --card: #ffffff;
+  --border: #d1d5db;
+  --ok: #0f766e;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.5;
+}
+
+.hero {
+  background: linear-gradient(135deg, #1d4ed8, #2563eb);
+  color: white;
+  padding: 2rem 1rem;
+  text-align: center;
+}
+
+main {
+  max-width: 900px;
+  margin: 1.5rem auto;
+  padding: 0 1rem 2rem;
+}
+
+h2 {
+  margin-top: 0;
+}
+
+.worksheet-box,
+.check-box {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1rem 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.goal {
+  background: #eff6ff;
+  border-left: 4px solid var(--primary);
+  padding: 0.75rem;
+  border-radius: 8px;
+}
+
+.small {
+  margin-top: -0.4rem;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 0.8rem;
+}
+
+.tip-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0.8rem;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.tip-card:hover,
+.tip-card:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  outline: 2px solid #93c5fd;
+}
+
+.tip-card h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.tip-card p {
+  margin: 0.6rem 0 0;
+}
+
+.tip-card .answer {
+  display: none;
+  color: #0b4a6f;
+}
+
+.tip-card.open .answer {
+  display: block;
+}
+
+.tip-card.open .prompt {
+  color: #6b7280;
+}
+
+button {
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 0.65rem 1rem;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+button:hover {
+  filter: brightness(1.05);
+}
+
+.solution {
+  margin-top: 0.8rem;
+  background: #ecfeff;
+  border-left: 4px solid var(--ok);
+  padding: 0.8rem;
+  border-radius: 8px;
+}
+
+.hidden {
+  display: none;
+}
+
+footer {
+  text-align: center;
+  padding: 1.2rem;
+  color: #475569;
+}
