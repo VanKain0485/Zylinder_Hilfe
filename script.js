@@ -61,7 +61,7 @@ function buildCommonScene(container, overlay) {
 
 function createHeightRod() {
   const rod = new THREE.Mesh(
-    new THREE.CylinderGeometry(0.05, 0.05, 2.4, 16),
+    new THREE.CylinderGeometry(0.04, 0.04, 2.4, 16),
     new THREE.MeshStandardMaterial({ color: '#047857' })
   );
   rod.position.set(1.2, 0, 0);
@@ -136,22 +136,22 @@ function initModel({ containerId, overlayId, legendId, featureConfig, calloutLab
   });
 
   function placeCallout(feature, pos, index) {
-    const rightInset = container.clientWidth - 12;
+    const rightInset = container.clientWidth - 130;
     const targetY = 42 + index * 46;
     const y = Math.min(container.clientHeight - 18, Math.max(18, targetY));
 
     feature.tag.style.left = `${rightInset}px`;
     feature.tag.style.top = `${y}px`;
 
-    const endX = rightInset - 8;
-    const endY = y;
-    const dx = endX - pos.x;
-    const dy = endY - pos.y;
+    const startX = rightInset - 8;
+    const startY = y;
+    const dx = pos.x - startX;
+    const dy = pos.y - startY;
     const length = Math.hypot(dx, dy);
     const angle = Math.atan2(dy, dx) * (180 / Math.PI);
 
-    feature.arrow.style.left = `${pos.x}px`;
-    feature.arrow.style.top = `${pos.y}px`;
+    feature.arrow.style.left = `${startX}px`;
+    feature.arrow.style.top = `${startY}px`;
     feature.arrow.style.width = `${Math.max(8, length)}px`;
     feature.arrow.style.transform = `rotate(${angle}deg)`;
   }
@@ -239,7 +239,7 @@ initModel({
     height: { object: model2Height, anchor: new THREE.Vector3(1.2, 0.15, 0), label: 'Höhe h', className: 'height' },
     base: { object: model2Base, anchor: new THREE.Vector3(0, -1.3, 0), label: 'Grundfläche', className: 'base', showTag: false },
     center: { object: centerPoint, anchor: new THREE.Vector3(0, -1.12, 0), label: 'Mittelpunkt m', className: 'center' },
-    diameter: { object: diameterLine, anchor: new THREE.Vector3(0, -1.02, 0), label: 'Durchmesser d', className: 'diameter' },
+    diameter: { object: diameterLine, anchor: new THREE.Vector3(0.55, -1.02, 0), label: 'Durchmesser d', className: 'diameter' },
     radius: { object: radiusLine, anchor: new THREE.Vector3(0.0, -1.02, 0.5), label: 'Radius r', className: 'radius' }
   }
 });
