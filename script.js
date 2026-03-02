@@ -61,7 +61,7 @@ function buildCommonScene(container, overlay) {
 
 function createHeightRod() {
   const rod = new THREE.Mesh(
-    new THREE.CylinderGeometry(0.028, 0.028, 2.4, 16),
+    new THREE.CylinderGeometry(0.05, 0.05, 2.4, 16),
     new THREE.MeshStandardMaterial({ color: '#047857' })
   );
   rod.position.set(1.2, 0, 0);
@@ -77,7 +77,7 @@ function projectToScreen(vector3, camera, container) {
   };
 }
 
-function initModel({ containerId, overlayId, legendId, featureConfig }) {
+function initModel({ containerId, overlayId, legendId, featureConfig, externalLabels = false }) {
   const container = document.getElementById(containerId);
   const overlay = document.getElementById(overlayId);
   const legend = document.getElementById(legendId);
@@ -90,7 +90,7 @@ function initModel({ containerId, overlayId, legendId, featureConfig }) {
     scene.add(cfg.object);
     cfg.object.visible = false;
     const tag = document.createElement('div');
-    tag.className = `model-tag ${cfg.className} hidden`;
+    tag.className = `model-tag ${cfg.className} ${externalLabels ? 'outside' : ''} hidden`; 
     tag.textContent = cfg.label;
     overlay.appendChild(tag);
     features[key] = { ...cfg, active: false, tag };
@@ -140,8 +140,11 @@ function initModel({ containerId, overlayId, legendId, featureConfig }) {
         continue;
       }
       const pos = projectToScreen(feature.anchor, camera, container);
-      feature.tag.style.left = `${pos.x}px`;
-      feature.tag.style.top = `${pos.y}px`;
+      if (!externalLabels) {
+        feature.tag.style.left = `${pos.x}px`;
+      }
+      const y = Math.min(container.clientHeight - 18, Math.max(18, pos.y));
+      feature.tag.style.top = `${y}px`;
       feature.tag.style.opacity = pos.visible ? '1' : '0';
     }
 
@@ -170,6 +173,7 @@ initModel({
   containerId: 'modelContainer',
   overlayId: 'modelOverlay',
   legendId: 'legendControls',
+  externalLabels: false,
   featureConfig: {
     height: { object: model1Height, anchor: new THREE.Vector3(1.2, 0.15, 0), label: 'Höhe', className: 'height' },
     base: { object: model1Base, anchor: new THREE.Vector3(0, -1.3, 0), label: 'Grundfläche', className: 'base' }
@@ -192,13 +196,14 @@ diameterLine.rotation.z = Math.PI / 2;
 diameterLine.position.set(0, -1.2, 0);
 
 const radiusLine = new THREE.Mesh(new THREE.CylinderGeometry(0.02, 0.02, 1, 16), new THREE.MeshStandardMaterial({ color: '#0ea5e9' }));
-radiusLine.rotation.z = Math.PI / 2;
-radiusLine.position.set(0.5, -1.2, 0);
+radiusLine.rotation.x = Math.PI / 2;
+radiusLine.position.set(0, -1.2, 0.5);
 
 initModel({
   containerId: 'modelContainer2',
   overlayId: 'modelOverlay2',
   legendId: 'legendControls2',
+  externalLabels: true,
   featureConfig: {
     height: { object: model2Height, anchor: new THREE.Vector3(1.2, 0.15, 0), label: 'Höhe h', className: 'height' },
     base: { object: model2Base, anchor: new THREE.Vector3(0, -1.3, 0), label: 'Grundfläche', className: 'base', showTag: false },

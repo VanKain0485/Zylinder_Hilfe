@@ -58,6 +58,21 @@ h2 { margin-top: 0; }
 .model-tag.diameter { border-color: var(--diameter-color); }
 .model-tag.radius { border-color: var(--radius-color); }
 
+
+#modelContainer2 {
+  overflow: visible;
+}
+
+.model-tag.outside {
+  left: calc(100% + 14px) !important;
+  transform: translate(0, -50%);
+}
+
+.model-tag.outside::before {
+  content: "← ";
+  font-weight: 700;
+}
+
 .legend { margin-top: 0.8rem; display: flex; flex-wrap: wrap; gap: 0.5rem; }
 .legend-btn {
   background: #eff6ff;
