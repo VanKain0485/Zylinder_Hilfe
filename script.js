@@ -95,50 +95,37 @@ const edgeLines = new THREE.LineSegments(
 );
 scene.add(edgeLines);
 
-function createLine(points, color) {
-  return new THREE.Line(
-    new THREE.BufferGeometry().setFromPoints(points),
-    new THREE.LineBasicMaterial({ color })
-  );
-}
-
-const radiusLine = createLine(
-  [new THREE.Vector3(0, -1.2, 0), new THREE.Vector3(1, -1.2, 0)],
-  '#dc2626'
+const heightLine = new THREE.Line(
+  new THREE.BufferGeometry().setFromPoints([
+    new THREE.Vector3(1.2, -1.2, 0),
+    new THREE.Vector3(1.2, 1.2, 0)
+  ]),
+  new THREE.LineBasicMaterial({ color: '#047857' })
 );
-const heightLine = createLine(
-  [new THREE.Vector3(1.2, -1.2, 0), new THREE.Vector3(1.2, 1.2, 0)],
-  '#047857'
-);
-const baseRing = createLine(
-  Array.from({ length: 65 }, (_, i) => {
-    const t = (i / 64) * Math.PI * 2;
-    return new THREE.Vector3(Math.cos(t), -1.2, Math.sin(t));
-  }),
-  '#d97706'
-);
-
-scene.add(radiusLine, heightLine, baseRing);
-radiusLine.visible = false;
+scene.add(heightLine);
 heightLine.visible = false;
-baseRing.visible = false;
+
+const baseArea = new THREE.Mesh(
+  new THREE.CircleGeometry(0.98, 64),
+  new THREE.MeshBasicMaterial({ color: '#f59e0b', transparent: true, opacity: 0.72, side: THREE.DoubleSide })
+);
+baseArea.rotation.x = -Math.PI / 2;
+baseArea.position.y = 1.205;
+scene.add(baseArea);
+baseArea.visible = false;
 
 const featureConfig = {
-  radius: {
-    object: radiusLine,
-    anchor: new THREE.Vector3(0.55, -1.2, 0),
-    label: 'Radius r',
-    className: 'radius'
-  },
   height: {
     object: heightLine,
+    pickObject: heightLine,
     anchor: new THREE.Vector3(1.2, 0.2, 0),
     label: 'Höhe h',
     className: 'height'
   },
   base: {
-    object: baseRing,
-    anchor: new THREE.Vector3(0.85, -1.2, 0.55),
+    object: baseArea,
+    pickObject: baseArea,
+    anchor: new THREE.Vector3(0, 1.28, 0),
     label: 'Grundfläche A = π · r²',
     className: 'base'
   }
@@ -155,18 +142,18 @@ for (const [key, config] of Object.entries(featureConfig)) {
 
 function projectToScreen(vector3) {
   const projected = vector3.clone().project(camera);
-  const x = (projected.x * 0.5 + 0.5) * modelContainer.clientWidth;
-  const y = (-projected.y * 0.5 + 0.5) * modelContainer.clientHeight;
-  return { x, y, visible: projected.z < 1 };
+  return {
+    x: (projected.x * 0.5 + 0.5) * modelContainer.clientWidth,
+    y: (-projected.y * 0.5 + 0.5) * modelContainer.clientHeight,
+    visible: projected.z < 1
+  };
 }
 
 function updateFeatureView(key) {
   const feature = features[key];
   feature.object.visible = feature.active;
   feature.tag.classList.toggle('hidden', !feature.active);
-
-  const btn = document.querySelector(`.legend-btn[data-key="${key}"]`);
-  btn.classList.toggle('active', feature.active);
+  document.querySelector(`.legend-btn[data-key="${key}"]`)?.classList.toggle('active', feature.active);
 }
 
 function toggleFeature(key) {
@@ -175,14 +162,11 @@ function toggleFeature(key) {
 }
 
 legendButtons.forEach((btn) => {
-  btn.addEventListener('click', () => {
-    toggleFeature(btn.dataset.key);
-  });
+  btn.addEventListener('click', () => toggleFeature(btn.dataset.key));
 });
 
 const raycaster = new THREE.Raycaster();
 const pointer = new THREE.Vector2();
-
 renderer.domElement.addEventListener('click', (event) => {
   const rect = renderer.domElement.getBoundingClientRect();
   pointer.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
@@ -190,7 +174,7 @@ renderer.domElement.addEventListener('click', (event) => {
   raycaster.setFromCamera(pointer, camera);
 
   for (const [key, feature] of Object.entries(features)) {
-    const hit = raycaster.intersectObject(feature.object, true);
+    const hit = raycaster.intersectObject(feature.pickObject, true);
     if (hit.length > 0) {
       toggleFeature(key);
       return;
@@ -203,12 +187,13 @@ function animate() {
   controls.update();
 
   for (const feature of Object.values(features)) {
-    if (feature.active) {
-      const pos = projectToScreen(feature.anchor);
-      feature.tag.style.left = `${pos.x}px`;
-      feature.tag.style.top = `${pos.y}px`;
-      feature.tag.style.opacity = pos.visible ? '1' : '0';
+    if (!feature.active) {
+      continue;
     }
+    const pos = projectToScreen(feature.anchor);
+    feature.tag.style.left = `${pos.x}px`;
+    feature.tag.style.top = `${pos.y}px`;
+    feature.tag.style.opacity = pos.visible ? '1' : '0';
   }
 
   renderer.render(scene, camera);

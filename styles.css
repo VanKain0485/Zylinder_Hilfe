@@ -5,7 +5,6 @@
   --card: #ffffff;
   --border: #d1d5db;
   --ok: #0f766e;
-  --radius-color: #dc2626;
   --height-color: #047857;
   --base-color: #d97706;
 }
@@ -96,7 +95,6 @@ h2 {
   white-space: nowrap;
 }
 
-.model-tag.radius { border-color: var(--radius-color); }
 .model-tag.height { border-color: var(--height-color); }
 .model-tag.base { border-color: var(--base-color); }
 
@@ -116,7 +114,6 @@ h2 {
   vertical-align: -0.05rem;
 }
 
-.dot.radius { background: var(--radius-color); }
 .dot.height { background: var(--height-color); }
 .dot.base { background: var(--base-color); }
 
