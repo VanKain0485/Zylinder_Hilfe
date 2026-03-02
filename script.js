@@ -110,7 +110,7 @@ const baseArea = new THREE.Mesh(
   new THREE.MeshBasicMaterial({ color: '#f59e0b', transparent: true, opacity: 0.72, side: THREE.DoubleSide })
 );
 baseArea.rotation.x = -Math.PI / 2;
-baseArea.position.y = 1.205;
+baseArea.position.y = -1.205;
 scene.add(baseArea);
 baseArea.visible = false;
 
@@ -119,14 +119,14 @@ const featureConfig = {
     object: heightLine,
     pickObject: heightLine,
     anchor: new THREE.Vector3(1.2, 0.2, 0),
-    label: 'Höhe h',
+    label: 'Höhe',
     className: 'height'
   },
   base: {
     object: baseArea,
     pickObject: baseArea,
-    anchor: new THREE.Vector3(0, 1.28, 0),
-    label: 'Grundfläche A = π · r²',
+    anchor: new THREE.Vector3(0, -1.28, 0),
+    label: 'Grundfläche',
     className: 'base'
   }
 };
