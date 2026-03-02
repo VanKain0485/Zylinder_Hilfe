@@ -35,7 +35,6 @@ const tips = [
 ];
 
 const tipGrid = document.getElementById('tipGrid');
-
 for (const tip of tips) {
   const card = document.createElement('button');
   card.type = 'button';
@@ -45,17 +44,12 @@ for (const tip of tips) {
     <p class="prompt">${tip.prompt}</p>
     <p class="answer">${tip.answer}</p>
   `;
-
-  card.addEventListener('click', () => {
-    card.classList.toggle('open');
-  });
-
+  card.addEventListener('click', () => card.classList.toggle('open'));
   tipGrid.appendChild(card);
 }
 
 const showSolutionButton = document.getElementById('showSolution');
 const solution = document.getElementById('solution');
-
 showSolutionButton.addEventListener('click', () => {
   solution.classList.toggle('hidden');
   showSolutionButton.textContent = solution.classList.contains('hidden')
@@ -64,7 +58,8 @@ showSolutionButton.addEventListener('click', () => {
 });
 
 const modelContainer = document.getElementById('modelContainer');
-const labels = document.getElementById('modelLabels');
+const modelOverlay = document.getElementById('modelOverlay');
+const legendButtons = document.querySelectorAll('.legend-btn');
 
 const scene = new THREE.Scene();
 scene.background = new THREE.Color('#f8fafc');
@@ -75,13 +70,13 @@ camera.position.set(3.5, 2.7, 4.2);
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setPixelRatio(window.devicePixelRatio);
 renderer.setSize(modelContainer.clientWidth, modelContainer.clientHeight);
-modelContainer.appendChild(renderer.domElement);
+modelContainer.insertBefore(renderer.domElement, modelOverlay);
 
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
 controls.minDistance = 2.8;
 controls.maxDistance = 8;
-controls.target.set(0, 0.5, 0);
+controls.target.set(0, 0.3, 0);
 controls.update();
 
 scene.add(new THREE.AmbientLight(0xffffff, 0.7));
@@ -90,7 +85,7 @@ dirLight.position.set(4, 7, 5);
 scene.add(dirLight);
 
 const cylinderGeometry = new THREE.CylinderGeometry(1, 1, 2.4, 64);
-const cylinderMaterial = new THREE.MeshStandardMaterial({ color: '#60a5fa', roughness: 0.32, metalness: 0.15 });
+const cylinderMaterial = new THREE.MeshStandardMaterial({ color: '#3b82f6', roughness: 0.32, metalness: 0.15 });
 const cylinder = new THREE.Mesh(cylinderGeometry, cylinderMaterial);
 scene.add(cylinder);
 
@@ -100,45 +95,122 @@ const edgeLines = new THREE.LineSegments(
 );
 scene.add(edgeLines);
 
-const radiusLine = new THREE.Line(
-  new THREE.BufferGeometry().setFromPoints([
-    new THREE.Vector3(0, -1.2, 0),
-    new THREE.Vector3(1, -1.2, 0)
-  ]),
-  new THREE.LineBasicMaterial({ color: '#dc2626' })
-);
-scene.add(radiusLine);
+function createLine(points, color) {
+  return new THREE.Line(
+    new THREE.BufferGeometry().setFromPoints(points),
+    new THREE.LineBasicMaterial({ color })
+  );
+}
 
-const heightLine = new THREE.Line(
-  new THREE.BufferGeometry().setFromPoints([
-    new THREE.Vector3(1.18, -1.2, 0),
-    new THREE.Vector3(1.18, 1.2, 0)
-  ]),
-  new THREE.LineBasicMaterial({ color: '#047857' })
+const radiusLine = createLine(
+  [new THREE.Vector3(0, -1.2, 0), new THREE.Vector3(1, -1.2, 0)],
+  '#dc2626'
 );
-scene.add(heightLine);
+const heightLine = createLine(
+  [new THREE.Vector3(1.2, -1.2, 0), new THREE.Vector3(1.2, 1.2, 0)],
+  '#047857'
+);
+const baseRing = createLine(
+  Array.from({ length: 65 }, (_, i) => {
+    const t = (i / 64) * Math.PI * 2;
+    return new THREE.Vector3(Math.cos(t), -1.2, Math.sin(t));
+  }),
+  '#d97706'
+);
+
+scene.add(radiusLine, heightLine, baseRing);
+radiusLine.visible = false;
+heightLine.visible = false;
+baseRing.visible = false;
+
+const featureConfig = {
+  radius: {
+    object: radiusLine,
+    anchor: new THREE.Vector3(0.55, -1.2, 0),
+    label: 'Radius r',
+    className: 'radius'
+  },
+  height: {
+    object: heightLine,
+    anchor: new THREE.Vector3(1.2, 0.2, 0),
+    label: 'Höhe h',
+    className: 'height'
+  },
+  base: {
+    object: baseRing,
+    anchor: new THREE.Vector3(0.85, -1.2, 0.55),
+    label: 'Grundfläche A = π · r²',
+    className: 'base'
+  }
+};
+
+const features = {};
+for (const [key, config] of Object.entries(featureConfig)) {
+  const tag = document.createElement('div');
+  tag.className = `model-tag ${config.className} hidden`;
+  tag.textContent = config.label;
+  modelOverlay.appendChild(tag);
+  features[key] = { ...config, tag, active: false };
+}
+
+function projectToScreen(vector3) {
+  const projected = vector3.clone().project(camera);
+  const x = (projected.x * 0.5 + 0.5) * modelContainer.clientWidth;
+  const y = (-projected.y * 0.5 + 0.5) * modelContainer.clientHeight;
+  return { x, y, visible: projected.z < 1 };
+}
+
+function updateFeatureView(key) {
+  const feature = features[key];
+  feature.object.visible = feature.active;
+  feature.tag.classList.toggle('hidden', !feature.active);
+
+  const btn = document.querySelector(`.legend-btn[data-key="${key}"]`);
+  btn.classList.toggle('active', feature.active);
+}
+
+function toggleFeature(key) {
+  features[key].active = !features[key].active;
+  updateFeatureView(key);
+}
+
+legendButtons.forEach((btn) => {
+  btn.addEventListener('click', () => {
+    toggleFeature(btn.dataset.key);
+  });
+});
 
 const raycaster = new THREE.Raycaster();
 const pointer = new THREE.Vector2();
-let labelsVisible = false;
 
 renderer.domElement.addEventListener('click', (event) => {
   const rect = renderer.domElement.getBoundingClientRect();
   pointer.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
   pointer.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
-
   raycaster.setFromCamera(pointer, camera);
-  const hit = raycaster.intersectObject(cylinder);
-  if (hit.length > 0) {
-    labelsVisible = !labelsVisible;
-    labels.classList.toggle('hidden', !labelsVisible);
-    cylinder.material.color.set(labelsVisible ? '#3b82f6' : '#60a5fa');
+
+  for (const [key, feature] of Object.entries(features)) {
+    const hit = raycaster.intersectObject(feature.object, true);
+    if (hit.length > 0) {
+      toggleFeature(key);
+      return;
+    }
   }
 });
 
 function animate() {
   requestAnimationFrame(animate);
   controls.update();
+
+  for (const feature of Object.values(features)) {
+    if (feature.active) {
+      const pos = projectToScreen(feature.anchor);
+      feature.tag.style.left = `${pos.x}px`;
+      feature.tag.style.top = `${pos.y}px`;
+      feature.tag.style.opacity = pos.visible ? '1' : '0';
+    }
+  }
+
   renderer.render(scene, camera);
 }
 animate();

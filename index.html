@@ -36,12 +36,15 @@
 
     <section class="model-box">
       <h2>Interaktives 3D-Modell</h2>
-      <p class="small">Mit der Maus oder dem Finger ziehen, um den Zylinder zu drehen. Mit dem Mausrad zoomen. Klicke auf den Zylinder, um Beschriftungen ein-/auszublenden.</p>
-      <div id="modelContainer" class="model-container" aria-label="Interaktives 3D-Modell eines Zylinders"></div>
-      <div id="modelLabels" class="model-labels hidden" aria-live="polite">
-        <span class="label radius">Radius r</span>
-        <span class="label height">Höhe h</span>
-        <span class="label base">Grundfläche A = π · r²</span>
+      <p class="small">Mit der Maus oder dem Finger ziehen, um den Zylinder zu drehen. Mit dem Mausrad zoomen. Wähle unten in der Legende aus, was angezeigt werden soll.</p>
+      <div id="modelContainer" class="model-container" aria-label="Interaktives 3D-Modell eines Zylinders">
+        <div id="modelOverlay" class="model-overlay" aria-hidden="true"></div>
+      </div>
+
+      <div class="legend" id="legendControls" aria-label="Legende und Auswahl der Beschriftungen">
+        <button class="legend-btn" data-key="radius" type="button"><span class="dot radius"></span>Radius r</button>
+        <button class="legend-btn" data-key="height" type="button"><span class="dot height"></span>Höhe h</button>
+        <button class="legend-btn" data-key="base" type="button"><span class="dot base"></span>Grundfläche A = π · r²</button>
       </div>
     </section>
 
