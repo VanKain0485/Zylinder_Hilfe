@@ -143,7 +143,8 @@ function initModel({ containerId, overlayId, legendId, featureConfig, calloutLab
     feature.tag.style.left = `${rightInset}px`;
     feature.tag.style.top = `${y}px`;
 
-    const startX = rightInset - 8;
+    const tagHalfWidth = feature.tag.offsetWidth / 2;
+    const startX = rightInset - tagHalfWidth + 2;
     const startY = y;
     const dx = pos.x - startX;
     const dy = pos.y - startY;
@@ -238,7 +239,7 @@ initModel({
   featureConfig: {
     height: { object: model2Height, anchor: new THREE.Vector3(1.2, 0.15, 0), label: 'Höhe h', className: 'height' },
     base: { object: model2Base, anchor: new THREE.Vector3(0, -1.3, 0), label: 'Grundfläche', className: 'base', showTag: false },
-    center: { object: centerPoint, anchor: new THREE.Vector3(0, -1.12, 0), label: 'Mittelpunkt m', className: 'center' },
+    center: { object: centerPoint, anchor: new THREE.Vector3(0, -1.12, 0), label: 'Mittelpunkt M', className: 'center' },
     diameter: { object: diameterLine, anchor: new THREE.Vector3(0.55, -1.02, 0), label: 'Durchmesser d', className: 'diameter' },
     radius: { object: radiusLine, anchor: new THREE.Vector3(0.0, -1.02, 0.5), label: 'Radius r', className: 'radius' }
   }
