@@ -35,15 +35,29 @@
     </section>
 
     <section class="model-box">
-      <h2>Interaktives 3D-Modell</h2>
-      <p class="small">Mit der Maus oder dem Finger ziehen, um den Zylinder zu drehen. Mit dem Mausrad zoomen. Wähle unten in der Legende aus, was angezeigt werden soll.</p>
-      <div id="modelContainer" class="model-container" aria-label="Interaktives 3D-Modell eines Zylinders">
+      <h2>Interaktives 3D-Modell: Schritt 1</h2>
+      <p class="small">Drehe den Zylinder. Schalte Höhe und Grundfläche über die Legende ein und aus.</p>
+      <div id="modelContainer" class="model-container" aria-label="Interaktives 3D-Modell: Höhe und Grundfläche">
         <div id="modelOverlay" class="model-overlay" aria-hidden="true"></div>
       </div>
-
-      <div class="legend" id="legendControls" aria-label="Legende und Auswahl der Beschriftungen">
+      <div class="legend" id="legendControls">
         <button class="legend-btn" data-key="height" type="button"><span class="dot height"></span>Höhe</button>
         <button class="legend-btn" data-key="base" type="button"><span class="dot base"></span>Grundfläche</button>
+      </div>
+    </section>
+
+    <section class="model-box">
+      <h2>Interaktives 3D-Modell: Schritt 2</h2>
+      <p class="small">Hier siehst du zusätzlich Mittelpunkt, Durchmesser und Radius der Grundfläche in verschiedenen Farben.</p>
+      <div id="modelContainer2" class="model-container" aria-label="Interaktives 3D-Modell: Höhe, Mittelpunkt, Durchmesser und Radius">
+        <div id="modelOverlay2" class="model-overlay" aria-hidden="true"></div>
+      </div>
+      <div class="legend" id="legendControls2">
+        <button class="legend-btn" data-key="height" type="button"><span class="dot height"></span>Höhe h</button>
+        <button class="legend-btn" data-key="base" type="button"><span class="dot base"></span>Grundfläche</button>
+        <button class="legend-btn" data-key="center" type="button"><span class="dot center"></span>Mittelpunkt m</button>
+        <button class="legend-btn" data-key="diameter" type="button"><span class="dot diameter"></span>Durchmesser d</button>
+        <button class="legend-btn" data-key="radius" type="button"><span class="dot radius"></span>Radius r</button>
       </div>
     </section>
 
