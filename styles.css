@@ -105,6 +105,7 @@ h2 { margin-top: 0; }
 .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 0.8rem; }
 
 .tip-card {
+  color: var(--text);
   background: transparent;
   border: none;
   padding: 0;
@@ -133,6 +134,7 @@ h2 { margin-top: 0; }
   background: var(--card);
   padding: 0.8rem;
   text-align: left;
+  color: var(--text);
 }
 
 .tip-face.back {
