@@ -3,64 +3,74 @@ import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.161.0/exampl
 
 const tips = [
   {
-    title: 'H1 – Aufgabe 1: Welche zwei Größen?',
-    prompt: 'Denk an Quader/Prisma: Volumen hängt immer von „unten“ und „nach oben“ ab.',
-    answer: 'Du brauchst Grundfläche (unten) und Höhe (von unten nach oben).'
+    title: 'H1 – Aufgabe 1 (Modell 1): Welche zwei Größen?',
+    prompt: 'Denk an Quader/Prisma: Welche zwei Angaben braucht man immer fürs Volumen?',
+    answer: 'Eine Größe beschreibt die Fläche unten → Grundfläche. Eine Größe beschreibt „nach oben“ → Höhe.'
   },
   {
-    title: 'H2 – Aufgabe 2: Höhe markieren',
-    prompt: 'Wo ist beim Zylinder die Strecke „von unten nach oben“?',
-    answer: 'Das ist die Höhe. Markiere außen eine Strecke/Pfeil unten → oben und schreibe Höhe dazu.'
+    title: 'H2 – Aufgabe 1 (Modell 1): Fachbegriffe finden',
+    prompt: 'Wie heißen die beiden Größen als Fachbegriffe?',
+    answer: 'Grundfläche und Höhe.'
   },
   {
-    title: 'H3 – Aufgabe 2: Grundfläche markieren',
-    prompt: 'Auf welcher Fläche steht der Zylinder?',
-    answer: 'Das ist die Grundfläche. Markiere unten die Fläche (z. B. umranden) und schreibe Grundfläche dazu. Wichtig: Nicht ausmalen – Markierung reicht.'
+    title: 'H3 – Aufgabe 2 (Modell 1): Höhe markieren',
+    prompt: 'Wo ist die Höhe am Zylinder?',
+    answer: 'Höhe = Strecke von unten nach oben außen am Mantel. → Pfeil/Linie setzen und „Höhe“ dazuschreiben.'
   },
   {
-    title: 'H4 – Aufgabe 3/4: Abkürzungen',
-    prompt: 'Welche Abkürzungen nutzen wir für Grundfläche und Höhe?',
-    answer: 'Grundfläche → G, Höhe → h. Schreibe G und h auch an den Zylinder.'
+    title: 'H4 – Aufgabe 2 (Modell 1): Grundfläche markieren',
+    prompt: 'Was ist die Grundfläche?',
+    answer: 'Grundfläche = Fläche, auf der der Zylinder steht (unten). → Unten umranden/markieren und „Grundfläche“ dazuschreiben. Nicht ausmalen!'
   },
   {
-    title: 'H5 – Aufgabe 5/6: Volumen-Idee',
-    prompt: 'Wie war die Volumen-Idee beim Quader/Prisma?',
+    title: 'H5 – Aufgabe 3: Abkürzungen zuordnen',
+    prompt: 'Welche Abkürzungen nutzt man für Grundfläche und Höhe?',
+    answer: 'Grundfläche → G, Höhe → h (h klein!).'
+  },
+  {
+    title: 'H6 – Aufgabe 5/6: Volumen-Idee übertragen',
+    prompt: 'Wie war die Regel beim Quader/Prisma?',
     answer: 'Volumen = Grundfläche · Höhe, also V = G · h.'
   },
   {
-    title: 'H6 – Aufgabe 7: Form der Grundfläche',
+    title: 'H7 – Aufgabe 7: Form der Grundfläche',
     prompt: 'Welche Form hat die Grundfläche beim Zylinder?',
     answer: 'Die Grundfläche ist ein Kreis.'
   },
   {
-    title: 'H7 – Aufgabe 8: Kreis beschriften (Grundidee)',
-    prompt: 'Was musst du im Kreis beschriften, damit du später die Kreisfläche berechnen kannst?',
-    answer: 'Du brauchst: M = Mittelpunkt, d = Durchmesser, r = Radius.'
+    title: 'H8 – Aufgabe 8 (Modell 2): Was muss im Kreis beschriftet werden?',
+    prompt: 'Welche drei Beschriftungen brauchst du am Kreis, um später G berechnen zu können?',
+    answer: '✅ Mittelpunkt M, ✅ Durchmesser d, ✅ Radius r.'
   },
   {
-    title: 'H8 – Aufgabe 8: Durchmesser (fachlich korrekt!)',
-    prompt: 'Achtung: Rand–Rand ist nicht automatisch ein Durchmesser.',
-    answer: 'Durchmesser d = Linie von Rand zu Rand durch den Mittelpunkt M. Geht die Linie nicht durch M, ist es kein Durchmesser (sondern eine Sehne).'
+    title: 'H9 – Aufgabe 8 (Modell 2): Durchmesser erkennen',
+    prompt: 'Welche Linie im Kreis ist der Durchmesser d?',
+    answer: 'Der Durchmesser ist die ganze Strecke von Rand zu Rand, die durch den Mittelpunkt M geht. → d an diese lange Linie schreiben.'
   },
   {
-    title: 'H9 – Aufgabe 9: Übertrag auf den Zylinder',
-    prompt: 'Übertrage das aus dem Kreisbild auf den Zylinder.',
-    answer: 'Oben in die Grundfläche einzeichnen und beschriften: Punkt M in die Mitte, Linie d durch M (Rand–Rand), Linie r von M zum Rand.'
+    title: 'H10 – Aufgabe 8 (Modell 2): Radius erkennen',
+    prompt: 'Welche Linie im Kreis ist der Radius r?',
+    answer: 'Radius = Strecke vom Mittelpunkt M bis zum Rand (halber Durchmesser). → r an diese „halbe“ Linie schreiben. Merke: r = d/2.'
   },
   {
-    title: 'H10 – Aufgabe 10: Kreisfläche',
-    prompt: 'Wie lautet die Formel für die Fläche eines Kreises?',
-    answer: 'G = π · r² (mit π ≈ 3,14).'
+    title: 'H11 – Aufgabe 9 (Modell 2): Übertragen auf den Zylinder',
+    prompt: 'Wie findest du oben am Zylinder den Mittelpunkt M, damit d/r stimmen?',
+    answer: '1) Zeichne zuerst d (Rand–Rand) oben ungefähr durch die Mitte. 2) Halbiere d → dort ist M. 3) Von M zum Rand zeichnen = r.'
   },
   {
-    title: 'H11 – Aufgabe 11: Einsetzen',
+    title: 'H12 – Aufgabe 10: Kreisflächenformel',
+    prompt: 'Wie lautet die Formel für die Kreisfläche?',
+    answer: 'G = π · r².'
+  },
+  {
+    title: 'H13 – Aufgabe 11: Einsetzen',
     prompt: 'Setze die Kreisfläche in V = G · h ein.',
-    answer: 'V = G · h, G = π · r² ⇒ V = (π · r²) · h.'
+    answer: 'V = G · h, G = πr² ⇒ V = (πr²) · h.'
   },
   {
-    title: 'H12 – Aufgabe 12: Klammer auflösen',
-    prompt: 'Klammer auflösen heißt: ohne Klammer hinschreiben.',
-    answer: 'V = (π · r²) · h ⇒ V = π · r² · h.'
+    title: 'H14 – Aufgabe 12: Klammer auflösen',
+    prompt: 'Klammer auflösen: Was bleibt stehen?',
+    answer: 'V = (πr²) · h = πr²h.'
   }
 ];
 
