@@ -112,7 +112,7 @@ const showSolutionButton = document.getElementById('showSolution');
 const solution = document.getElementById('solution');
 showSolutionButton.addEventListener('click', () => {
   solution.classList.toggle('hidden');
-  showSolutionButton.textContent = solution.classList.contains('hidden') ? 'Erwartungen einblenden' : 'Erwartungen ausblenden';
+  showSolutionButton.textContent = solution.classList.contains('hidden') ? 'Lösung einblenden' : 'Lösung ausblenden';
 });
 
 function buildCommonScene(container, overlay) {
