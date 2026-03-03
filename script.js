@@ -2,12 +2,66 @@ import * as THREE from 'three';
 import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.161.0/examples/jsm/controls/OrbitControls.js';
 
 const tips = [
-  { title: 'Tipp 1: Grundfläche erkennen', prompt: 'Welche Form hat die Grundfläche eines Zylinders?', answer: 'Die Grundfläche ist ein Kreis.' },
-  { title: 'Tipp 2: Kreisfläche wiederholen', prompt: 'Wie lautet die Formel für die Fläche eines Kreises?', answer: 'A = π · r²' },
-  { title: 'Tipp 3: Vom Flächeninhalt zum Volumen', prompt: 'Wie bekommt man aus einer Grundfläche ein Volumen?', answer: 'Volumen = Grundfläche · Höhe' },
-  { title: 'Tipp 4: Alles einsetzen', prompt: 'Setze die Kreisfläche in die Volumenformel ein.', answer: 'V = (π · r²) · h = π · r² · h' },
-  { title: 'Tipp 5: Bedeutung der Variablen', prompt: 'Wofür stehen r und h?', answer: 'r ist der Radius der Kreisfläche, h ist die Höhe des Zylinders.' },
-  { title: 'Tipp 6: Einheit prüfen', prompt: 'Welche Einheit hat das Volumen?', answer: 'Immer eine Kubikeinheit, z. B. cm³ oder m³.' }
+  {
+    title: 'H1 – Aufgabe 1: Welche zwei Größen?',
+    prompt: 'Denk an Quader/Prisma: Volumen hängt immer von „unten“ und „nach oben“ ab.',
+    answer: 'Du brauchst Grundfläche (unten) und Höhe (von unten nach oben).'
+  },
+  {
+    title: 'H2 – Aufgabe 2: Höhe markieren',
+    prompt: 'Wo ist beim Zylinder die Strecke „von unten nach oben“?',
+    answer: 'Das ist die Höhe. Markiere außen eine Strecke/Pfeil unten → oben und schreibe Höhe dazu.'
+  },
+  {
+    title: 'H3 – Aufgabe 2: Grundfläche markieren',
+    prompt: 'Auf welcher Fläche steht der Zylinder?',
+    answer: 'Das ist die Grundfläche. Markiere unten die Fläche (z. B. umranden) und schreibe Grundfläche dazu. Wichtig: Nicht ausmalen – Markierung reicht.'
+  },
+  {
+    title: 'H4 – Aufgabe 3/4: Abkürzungen',
+    prompt: 'Welche Abkürzungen nutzen wir für Grundfläche und Höhe?',
+    answer: 'Grundfläche → G, Höhe → h. Schreibe G und h auch an den Zylinder.'
+  },
+  {
+    title: 'H5 – Aufgabe 5/6: Volumen-Idee',
+    prompt: 'Wie war die Volumen-Idee beim Quader/Prisma?',
+    answer: 'Volumen = Grundfläche · Höhe, also V = G · h.'
+  },
+  {
+    title: 'H6 – Aufgabe 7: Form der Grundfläche',
+    prompt: 'Welche Form hat die Grundfläche beim Zylinder?',
+    answer: 'Die Grundfläche ist ein Kreis.'
+  },
+  {
+    title: 'H7 – Aufgabe 8: Kreis beschriften (Grundidee)',
+    prompt: 'Was musst du im Kreis beschriften, damit du später die Kreisfläche berechnen kannst?',
+    answer: 'Du brauchst: M = Mittelpunkt, d = Durchmesser, r = Radius.'
+  },
+  {
+    title: 'H8 – Aufgabe 8: Durchmesser (fachlich korrekt!)',
+    prompt: 'Achtung: Rand–Rand ist nicht automatisch ein Durchmesser.',
+    answer: 'Durchmesser d = Linie von Rand zu Rand durch den Mittelpunkt M. Geht die Linie nicht durch M, ist es kein Durchmesser (sondern eine Sehne).'
+  },
+  {
+    title: 'H9 – Aufgabe 9: Übertrag auf den Zylinder',
+    prompt: 'Übertrage das aus dem Kreisbild auf den Zylinder.',
+    answer: 'Oben in die Grundfläche einzeichnen und beschriften: Punkt M in die Mitte, Linie d durch M (Rand–Rand), Linie r von M zum Rand.'
+  },
+  {
+    title: 'H10 – Aufgabe 10: Kreisfläche',
+    prompt: 'Wie lautet die Formel für die Fläche eines Kreises?',
+    answer: 'G = π · r² (mit π ≈ 3,14).'
+  },
+  {
+    title: 'H11 – Aufgabe 11: Einsetzen',
+    prompt: 'Setze die Kreisfläche in V = G · h ein.',
+    answer: 'V = G · h, G = π · r² ⇒ V = (π · r²) · h.'
+  },
+  {
+    title: 'H12 – Aufgabe 12: Klammer auflösen',
+    prompt: 'Klammer auflösen heißt: ohne Klammer hinschreiben.',
+    answer: 'V = (π · r²) · h ⇒ V = π · r² · h.'
+  }
 ];
 
 const tipGrid = document.getElementById('tipGrid');
