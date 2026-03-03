@@ -14,6 +14,8 @@
 
 * { box-sizing: border-box; }
 
+html { scroll-behavior: smooth; }
+
 body {
   margin: 0;
   font-family: "Nunito", "Segoe UI", Arial, sans-serif;
@@ -33,6 +35,12 @@ body {
   border-bottom-left-radius: 26px;
   border-bottom-right-radius: 26px;
   box-shadow: 0 8px 24px rgba(37, 99, 235, 0.24);
+}
+
+.subline {
+  margin-top: 0.4rem;
+  opacity: 0.95;
+  font-size: 1.05rem;
 }
 
 main {
@@ -65,6 +73,38 @@ h2 { margin-top: 0; }
 .small {
   margin-top: -0.2rem;
   color: #334155;
+}
+
+
+.quickstart-box ul {
+  margin: 0.4rem 0 0;
+  padding-left: 1.2rem;
+}
+
+.quickstart-box li { margin: 0.3rem 0; }
+
+.anchor-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-top: 0.65rem;
+}
+
+.anchor-chip {
+  text-decoration: none;
+  background: #eef2ff;
+  color: #1e3a8a;
+  border: 1px solid #93c5fd;
+  border-radius: 999px;
+  padding: 0.45rem 0.75rem;
+  font-weight: 700;
+  font-size: 0.9rem;
+  transition: all 0.15s ease;
+}
+
+.anchor-chip:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(37, 99, 235, 0.18);
 }
 
 .model-container {

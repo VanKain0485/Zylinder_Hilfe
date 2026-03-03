@@ -15,25 +15,32 @@
 </head>
 <body>
   <header class="hero">
-    <h1>Zylinderformel selbst herleiten</h1>
-    <p>
-      Willkommen! Nutze die Tipp-Karten, um Schritt für Schritt die Formel für das Volumen eines Zylinders
-      zu entdecken. Klicke immer erst dann auf eine Karte, wenn du wirklich einen Hinweis brauchst.
-    </p>
+    <h1>Hilfe zum Zylindervolumen</h1>
+    <p class="subline">Nutze die Hilfekacheln nur, wenn du feststeckst.</p>
   </header>
 
   <main>
-    <section class="worksheet-box">
-      <h2>Arbeitsauftrag</h2>
-      <ol>
-        <li>Zeichne einen Zylinder und markiere <strong>Radius r</strong> und <strong>Höhe h</strong>.</li>
-        <li>Überlege: Aus welcher ebenen Figur besteht die Grundfläche?</li>
-        <li>Erinnere dich an die Formel für diese Fläche.</li>
-        <li>Kombiniere Grundfläche und Höhe zu einer Volumenformel.</li>
-      </ol>
-      <p class="goal">Ziel: Am Ende sollst du die Formel <strong>V = π · r² · h</strong> begründen können.</p>
+    <section class="worksheet-box quickstart-box">
+      <h2>Kurzanleitung</h2>
+      <ul>
+        <li>Erst selbst probieren (30–60 Sekunden).</li>
+        <li>Dann nur die passende Hilfekachel öffnen.</li>
+        <li>Erst Tipp lesen, erst danach umdrehen.</li>
+      </ul>
     </section>
-    <section>
+
+    <section class="worksheet-box nav-box">
+      <h2>Wo bist du gerade im Arbeitsblatt?</h2>
+      <p>Wähle den passenden Bereich. Die Aufgaben stehen auf deinem Blatt.</p>
+      <div class="anchor-nav">
+        <a class="anchor-chip" href="#bereich-groessen">Größen am Zylinder</a>
+        <a class="anchor-chip" href="#bereich-abkuerzungen">Abkürzungen &amp; V = G · h</a>
+        <a class="anchor-chip" href="#bereich-kreis">Kreis: M – d – r</a>
+        <a class="anchor-chip" href="#bereich-formel">Kreisfläche → Zylinderformel</a>
+      </div>
+    </section>
+
+    <section id="bereich-groessen">
       <h2>Hilfekarten 1–4 (zu Modell 1)</h2>
       <p class="small">Vorderseite lesen, dann auf die Karte klicken, um die Rückseite zu sehen.</p>
       <div class="card-grid" id="tipGridA"></div>
@@ -51,13 +58,13 @@
       </div>
     </section>
 
-    <section>
+    <section id="bereich-abkuerzungen">
       <h2>Hilfekarten 5–8</h2>
       <p class="small">Diese Karten führen zum Kreis als Grundfläche.</p>
       <div class="card-grid" id="tipGridB"></div>
     </section>
 
-    <section class="model-box">
+    <section id="bereich-kreis" class="model-box">
       <h2>Interaktives 3D-Modell: Schritt 2</h2>
       <p class="small">Hier siehst du zusätzlich Mittelpunkt, Durchmesser und Radius der Grundfläche in verschiedenen Farben.</p>
       <div id="modelContainer2" class="model-container" aria-label="Interaktives 3D-Modell: Höhe, Mittelpunkt, Durchmesser und Radius">
@@ -72,12 +79,11 @@
       </div>
     </section>
 
-    <section>
+    <section id="bereich-formel">
       <h2>Hilfekarten 9–14</h2>
       <p class="small">Zum Beschriften des Kreises und zur Herleitung der Endformel.</p>
       <div class="card-grid" id="tipGridC"></div>
     </section>
-
 
     <section class="check-box">
       <h2>Selbst-Check</h2>
