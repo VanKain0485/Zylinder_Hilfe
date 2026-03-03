@@ -20,7 +20,7 @@ const tips = [
   {
     title: 'H4 – Aufgabe 2 (Modell 1): Grundfläche markieren',
     prompt: 'Was ist die Grundfläche?',
-    answer: 'Grundfläche = Fläche, auf der der Zylinder steht (unten). → Unten umranden/markieren und „Grundfläche“ dazuschreiben. Nicht ausmalen!'
+    answer: 'Grundfläche = Fläche, auf der der Zylinder steht (unten). → Unten umranden/markieren und „Grundfläche“ dazuschreiben.'
   },
   {
     title: 'H5 – Aufgabe 3: Abkürzungen zuordnen',
