@@ -249,8 +249,8 @@ h2 { margin-top: 0; }
   background: linear-gradient(180deg, #ecfeff, #f0fdfa);
 }
 
-.tip-face h3 { margin: 0 0 0.4rem; font-size: 1.03rem; color: #1e3a8a; }
-.tip-face p { margin: 0; font-size: 1rem; }
+.tip-face h3 { margin: 0 0 0.45rem; font-size: 1.03rem; line-height: 1.35; color: #1e3a8a; }
+.tip-face p { margin: 0; font-size: 1rem; line-height: 1.6; }
 
 .tip-card:hover .tip-face,
 .tip-card:focus-visible .tip-face {
