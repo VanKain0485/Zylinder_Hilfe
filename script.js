@@ -3,72 +3,72 @@ import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.161.0/exampl
 
 const tips = [
   {
-    title: 'H1 – Aufgabe 1 (Modell 1): Welche zwei Größen?',
+    title: 'Aufgabe 1: Welche zwei Größen?',
     prompt: 'Denk an Quader/Prisma: Welche zwei Angaben braucht man immer fürs Volumen?',
     answer: 'Eine Größe beschreibt die Fläche unten → Grundfläche. Eine Größe beschreibt „nach oben“ → Höhe.'
   },
   {
-    title: 'H2 – Aufgabe 1 (Modell 1): Fachbegriffe finden',
+    title: 'Aufgabe 1: Fachbegriffe finden',
     prompt: 'Wie heißen die beiden Größen als Fachbegriffe?',
     answer: 'Grundfläche und Höhe.'
   },
   {
-    title: 'H3 – Aufgabe 2 (Modell 1): Höhe markieren',
+    title: 'Aufgabe 2: Höhe markieren',
     prompt: 'Wo ist die Höhe am Zylinder?',
     answer: 'Höhe = Strecke von unten nach oben außen am Mantel. → Pfeil/Linie setzen und „Höhe“ dazuschreiben.'
   },
   {
-    title: 'H4 – Aufgabe 2 (Modell 1): Grundfläche markieren',
+    title: 'Aufgabe 2: Grundfläche markieren',
     prompt: 'Was ist die Grundfläche?',
     answer: 'Grundfläche = Fläche, auf der der Zylinder steht (unten). → Unten umranden/markieren und „Grundfläche“ dazuschreiben.'
   },
   {
-    title: 'H5 – Aufgabe 3: Abkürzungen zuordnen',
+    title: 'Aufgabe 3: Abkürzungen zuordnen',
     prompt: 'Welche Abkürzungen nutzt man für Grundfläche und Höhe?',
     answer: 'Grundfläche → G, Höhe → h (h klein!).'
   },
   {
-    title: 'H6 – Aufgabe 5/6: Volumen-Idee übertragen',
+    title: 'Aufgabe 5/6: Volumen-Idee übertragen',
     prompt: 'Wie war die Regel beim Quader/Prisma?',
     answer: 'Volumen = Grundfläche · Höhe, also V = G · h.'
   },
   {
-    title: 'H7 – Aufgabe 7: Form der Grundfläche',
+    title: 'Aufgabe 7: Form der Grundfläche',
     prompt: 'Welche Form hat die Grundfläche beim Zylinder?',
     answer: 'Die Grundfläche ist ein Kreis.'
   },
   {
-    title: 'H8 – Aufgabe 8 (Modell 2): Was muss im Kreis beschriftet werden?',
+    title: 'Aufgabe 8: Was muss im Kreis beschriftet werden?',
     prompt: 'Welche drei Beschriftungen brauchst du am Kreis, um später G berechnen zu können?',
     answer: '✅ Mittelpunkt M, ✅ Durchmesser d, ✅ Radius r.'
   },
   {
-    title: 'H9 – Aufgabe 8 (Modell 2): Durchmesser erkennen',
+    title: 'Aufgabe 8: Durchmesser erkennen',
     prompt: 'Welche Linie im Kreis ist der Durchmesser d?',
     answer: 'Der Durchmesser ist die ganze Strecke von Rand zu Rand, die durch den Mittelpunkt M geht. → d an diese lange Linie schreiben.'
   },
   {
-    title: 'H10 – Aufgabe 8 (Modell 2): Radius erkennen',
+    title: 'Aufgabe 8: Radius erkennen',
     prompt: 'Welche Linie im Kreis ist der Radius r?',
     answer: 'Radius = Strecke vom Mittelpunkt M bis zum Rand (halber Durchmesser). → r an diese „halbe“ Linie schreiben. Merke: r = d/2.'
   },
   {
-    title: 'H11 – Aufgabe 9 (Modell 2): Übertragen auf den Zylinder',
+    title: 'Aufgabe 9: Übertragen auf den Zylinder',
     prompt: 'Wie findest du oben am Zylinder den Mittelpunkt M, damit d/r stimmen?',
     answer: '1) Zeichne zuerst d (Rand–Rand) oben ungefähr durch die Mitte. 2) Halbiere d → dort ist M. 3) Von M zum Rand zeichnen = r.'
   },
   {
-    title: 'H12 – Aufgabe 10: Kreisflächenformel',
+    title: 'Aufgabe 10: Kreisflächenformel',
     prompt: 'Wie lautet die Formel für die Kreisfläche?',
     answer: 'G = π · r².'
   },
   {
-    title: 'H13 – Aufgabe 11: Einsetzen',
+    title: 'Aufgabe 11: Einsetzen',
     prompt: 'Setze die Kreisfläche in V = G · h ein.',
     answer: 'V = G · h, G = πr² ⇒ V = (πr²) · h.'
   },
   {
-    title: 'H14 – Aufgabe 12: Klammer auflösen',
+    title: 'Aufgabe 12: Klammer auflösen',
     prompt: 'Klammer auflösen: Was bleibt stehen?',
     answer: 'V = (πr²) · h = πr²h.'
   }
@@ -84,21 +84,18 @@ function renderTipCards(containerId, from, to) {
   const container = document.getElementById(containerId);
   const subset = tips.slice(from, to);
 
-  subset.forEach((tip, localIndex) => {
-    const number = from + localIndex + 1;
+  subset.forEach((tip) => {
     const card = document.createElement('button');
     card.type = 'button';
     card.className = 'tip-card';
     card.innerHTML = `
       <div class="tip-card-inner">
         <div class="tip-face front">
-          <span class="tip-number">Karte ${number}</span>
-          <h3>${tip.title}</h3>
+                    <h3>${tip.title}</h3>
           <p>${tip.prompt}</p>
         </div>
         <div class="tip-face back">
-          <span class="tip-number">Rückseite</span>
-          <h3>${tip.title}</h3>
+                    <h3>${tip.title}</h3>
           <p>${tip.answer}</p>
         </div>
       </div>
@@ -143,7 +140,7 @@ function buildCommonScene(container, overlay) {
   scene.add(dirLight);
 
   const cylinderGeometry = new THREE.CylinderGeometry(1, 1, 2.4, 64);
-  const cylinder = new THREE.Mesh(cylinderGeometry, new THREE.MeshStandardMaterial({ color: '#3b82f6', roughness: 0.32, metalness: 0.15 }));
+  const cylinder = new THREE.Mesh(cylinderGeometry, new THREE.MeshStandardMaterial({ color: '#3b82f6', roughness: 0.32, metalness: 0.15, transparent: true, opacity: 0.5 }));
   scene.add(cylinder);
 
   return { scene, camera, renderer, controls, cylinder };
