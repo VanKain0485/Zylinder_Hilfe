@@ -140,7 +140,7 @@ function buildCommonScene(container, overlay) {
   scene.add(dirLight);
 
   const cylinderGeometry = new THREE.CylinderGeometry(1, 1, 2.4, 64);
-  const cylinder = new THREE.Mesh(cylinderGeometry, new THREE.MeshStandardMaterial({ color: '#3b82f6', roughness: 0.32, metalness: 0.15, transparent: true, opacity: 0.5 }));
+  const cylinder = new THREE.Mesh(cylinderGeometry, new THREE.MeshStandardMaterial({ color: '#93c5fd', roughness: 0.32, metalness: 0.15 }));
   scene.add(cylinder);
 
   return { scene, camera, renderer, controls, cylinder };
