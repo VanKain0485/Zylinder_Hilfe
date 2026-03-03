@@ -74,15 +74,42 @@ const tips = [
   }
 ];
 
-const tipGrid = document.getElementById('tipGrid');
-for (const tip of tips) {
-  const card = document.createElement('button');
-  card.type = 'button';
-  card.className = 'tip-card';
-  card.innerHTML = `<h3>${tip.title}</h3><p class="prompt">${tip.prompt}</p><p class="answer">${tip.answer}</p>`;
-  card.addEventListener('click', () => card.classList.toggle('open'));
-  tipGrid.appendChild(card);
+const tipSections = [
+  { id: 'tipGridA', from: 0, to: 4 },
+  { id: 'tipGridB', from: 4, to: 8 },
+  { id: 'tipGridC', from: 8, to: 14 }
+];
+
+function renderTipCards(containerId, from, to) {
+  const container = document.getElementById(containerId);
+  const subset = tips.slice(from, to);
+
+  subset.forEach((tip, localIndex) => {
+    const number = from + localIndex + 1;
+    const card = document.createElement('button');
+    card.type = 'button';
+    card.className = 'tip-card';
+    card.innerHTML = `
+      <div class="tip-card-inner">
+        <div class="tip-face front">
+          <span class="tip-number">Karte ${number}</span>
+          <h3>${tip.title}</h3>
+          <p>${tip.prompt}</p>
+        </div>
+        <div class="tip-face back">
+          <span class="tip-number">Rückseite</span>
+          <h3>${tip.title}</h3>
+          <p>${tip.answer}</p>
+        </div>
+      </div>
+    `;
+
+    card.addEventListener('click', () => card.classList.toggle('flipped'));
+    container.appendChild(card);
+  });
 }
+
+tipSections.forEach((section) => renderTipCards(section.id, section.from, section.to));
 
 const showSolutionButton = document.getElementById('showSolution');
 const solution = document.getElementById('solution');

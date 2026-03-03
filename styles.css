@@ -103,20 +103,63 @@ h2 { margin-top: 0; }
 .dot.radius { background: var(--radius-color); }
 
 .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 0.8rem; }
+
 .tip-card {
-  background: var(--card);
+  background: transparent;
+  border: none;
+  padding: 0;
+  perspective: 900px;
+  height: 170px;
+}
+
+.tip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.45s ease;
+  transform-style: preserve-3d;
+}
+
+.tip-card.flipped .tip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.tip-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
   border: 1px solid var(--border);
   border-radius: 12px;
+  background: var(--card);
   padding: 0.8rem;
-  cursor: pointer;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  text-align: left;
 }
-.tip-card:hover, .tip-card:focus-visible { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08); outline: 2px solid #93c5fd; }
-.tip-card h3 { margin: 0; font-size: 1rem; }
-.tip-card p { margin: 0.6rem 0 0; }
-.tip-card .answer { display: none; color: #0b4a6f; }
-.tip-card.open .answer { display: block; }
-.tip-card.open .prompt { color: #6b7280; }
+
+.tip-face.back {
+  transform: rotateY(180deg);
+  background: #ecfeff;
+}
+
+.tip-number {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #1e3a8a;
+  background: #dbeafe;
+  border: 1px solid #93c5fd;
+  border-radius: 999px;
+  padding: 0.15rem 0.45rem;
+  margin-bottom: 0.45rem;
+}
+
+.tip-face h3 { margin: 0 0 0.35rem; font-size: 0.95rem; }
+.tip-face p { margin: 0; font-size: 0.92rem; }
+
+.tip-card:hover .tip-face,
+.tip-card:focus-visible .tip-face {
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  outline: 2px solid #93c5fd;
+}
 
 button { background: var(--primary); color: white; border: none; border-radius: 10px; padding: 0.65rem 1rem; cursor: pointer; font-size: 0.95rem; }
 button:hover { filter: brightness(1.05); }
