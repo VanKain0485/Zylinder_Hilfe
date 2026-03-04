@@ -307,14 +307,14 @@ const model2Base = new THREE.Mesh(
 model2Base.rotation.x = -Math.PI / 2;
 model2Base.position.y = -1.205;
 
-const centerPoint = new THREE.Mesh(new THREE.SphereGeometry(0.075, 20, 20), new THREE.MeshStandardMaterial({ color: '#ec4899' }));
+const centerPoint = new THREE.Mesh(new THREE.SphereGeometry(0.075, 20, 20), new THREE.MeshStandardMaterial({ color: '#14b8a6' }));
 centerPoint.position.set(0, -1.2, 0);
 
-const diameterLine = new THREE.Mesh(new THREE.CylinderGeometry(0.02, 0.02, 2, 16), new THREE.MeshStandardMaterial({ color: '#dc2626' }));
+const diameterLine = new THREE.Mesh(new THREE.CylinderGeometry(0.02, 0.02, 2, 16), new THREE.MeshStandardMaterial({ color: '#e11d48' }));
 diameterLine.rotation.z = Math.PI / 2;
 diameterLine.position.set(0, -1.2, 0);
 
-const radiusLine = new THREE.Mesh(new THREE.CylinderGeometry(0.02, 0.02, 1, 16), new THREE.MeshStandardMaterial({ color: '#0ea5e9' }));
+const radiusLine = new THREE.Mesh(new THREE.CylinderGeometry(0.02, 0.02, 1, 16), new THREE.MeshStandardMaterial({ color: '#7c3aed' }));
 radiusLine.rotation.x = Math.PI / 2;
 radiusLine.position.set(0, -1.2, 0.5);
 
