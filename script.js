@@ -299,14 +299,6 @@ initModel({
   }
 });
 
-const model2Height = createHeightRod();
-const model2Base = new THREE.Mesh(
-  new THREE.CircleGeometry(0.98, 64),
-  new THREE.MeshBasicMaterial({ color: '#f59e0b', transparent: true, opacity: 0.55, side: THREE.DoubleSide })
-);
-model2Base.rotation.x = -Math.PI / 2;
-model2Base.position.y = -1.205;
-
 const centerPoint = new THREE.Mesh(new THREE.SphereGeometry(0.075, 20, 20), new THREE.MeshStandardMaterial({ color: '#14b8a6' }));
 centerPoint.position.set(0, -1.2, 0);
 
@@ -324,8 +316,6 @@ initModel({
   legendId: 'legendControls2',
   calloutLabels: true,
   featureConfig: {
-    height: { object: model2Height, anchor: new THREE.Vector3(0.98, 0.15, 0), label: 'Höhe h', className: 'height' },
-    base: { object: model2Base, anchor: new THREE.Vector3(0, -1.3, 0), label: 'Grundfläche', className: 'base', showTag: false },
     center: { object: centerPoint, anchor: new THREE.Vector3(0, -1.12, 0), label: 'Mittelpunkt M', className: 'center' },
     diameter: { object: diameterLine, anchor: new THREE.Vector3(0.55, -1.02, 0), label: 'Durchmesser d', className: 'diameter' },
     radius: { object: radiusLine, anchor: new THREE.Vector3(0.0, -1.02, 0.5), label: 'Radius r', className: 'radius' }
