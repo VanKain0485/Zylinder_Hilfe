@@ -242,6 +242,9 @@ h2 { margin-top: 0; }
   text-align: left;
   color: var(--text);
   box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 .tip-face.back {
@@ -251,6 +254,22 @@ h2 { margin-top: 0; }
 
 .tip-face h3 { margin: 0 0 0.45rem; font-size: 1.03rem; line-height: 1.35; color: #1e3a8a; }
 .tip-face p { margin: 0; font-size: 1rem; line-height: 1.6; }
+
+.tip-body {
+  font-size: 1rem;
+  line-height: 1.6;
+  overflow: auto;
+}
+
+.tip-body ol,
+.tip-body ul {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.tip-body li {
+  margin: 0.2rem 0;
+}
 
 .tip-card:hover .tip-face,
 .tip-card:focus-visible .tip-face {

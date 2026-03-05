@@ -5,7 +5,7 @@ const tips = [
   {
     title: 'Aufgabe 1: Welche zwei Größen?',
     prompt: 'Denk an Quader/Prisma: Welche zwei Angaben braucht man immer fürs Volumen?',
-    answer: 'Eine Größe beschreibt die Fläche unten → Grundfläche. Eine Größe beschreibt „nach oben“ → Höhe.'
+    answer: 'Eine Größe beschreibt die Fläche unten → <strong>Grundfläche</strong>.<br>Eine Größe beschreibt „nach oben“ → <strong>Höhe</strong>.'
   },
   {
     title: 'Aufgabe 1: Fachbegriffe finden',
@@ -15,22 +15,22 @@ const tips = [
   {
     title: 'Aufgabe 2: Höhe markieren',
     prompt: 'Wo ist die Höhe am Zylinder?',
-    answer: 'Höhe = Strecke von unten nach oben außen am Mantel. → Pfeil/Linie setzen und „Höhe“ dazuschreiben.'
+    answer: '<strong>Höhe</strong> = Strecke von unten nach oben außen am Mantel.<br>→ Pfeil/Linie setzen und „Höhe“ dazuschreiben.'
   },
   {
     title: 'Aufgabe 2: Grundfläche markieren',
     prompt: 'Was ist die Grundfläche?',
-    answer: 'Grundfläche = Fläche, auf der der Zylinder steht (unten). → Unten umranden/markieren und „Grundfläche“ dazuschreiben.'
+    answer: '<strong>Grundfläche</strong> = Fläche, auf der der Zylinder steht (unten).<br>→ Unten umranden/markieren und „Grundfläche“ dazuschreiben.'
   },
   {
     title: 'Aufgabe 3: Abkürzungen zuordnen',
     prompt: 'Welche Abkürzungen nutzt man für Grundfläche und Höhe?',
-    answer: 'Grundfläche → G, Höhe → h (h klein!).'
+    answer: 'Grundfläche → <strong>G</strong><br>Höhe → <strong>h</strong> (h klein!)'
   },
   {
     title: 'Aufgabe 5/6: Volumen-Idee übertragen',
     prompt: 'Wie war die Regel beim Quader/Prisma?',
-    answer: 'Volumen = Grundfläche · Höhe, also V = G · h.'
+    answer: 'Volumen = Grundfläche · Höhe<br>also <strong>V = G · h</strong>.'
   },
   {
     title: 'Aufgabe 7: Form der Grundfläche',
@@ -40,7 +40,7 @@ const tips = [
   {
     title: 'Aufgabe 8: Was muss im Kreis beschriftet werden?',
     prompt: 'Welche drei Beschriftungen brauchst du am Kreis, um später G berechnen zu können?',
-    answer: '✅ Mittelpunkt M, ✅ Durchmesser d, ✅ Radius r.'
+    answer: '✅ Mittelpunkt <strong>M</strong><br>✅ Durchmesser <strong>d</strong><br>✅ Radius <strong>r</strong>'
   },
   {
     title: 'Aufgabe 8: Durchmesser erkennen',
@@ -50,27 +50,27 @@ const tips = [
   {
     title: 'Aufgabe 8: Radius erkennen',
     prompt: 'Welche Linie im Kreis ist der Radius r?',
-    answer: 'Radius = Strecke vom Mittelpunkt M bis zum Rand (halber Durchmesser). → r an diese „halbe“ Linie schreiben. Merke: r = d/2.'
+    answer: 'Radius = Strecke vom Mittelpunkt <strong>M</strong> bis zum Rand (halber Durchmesser).<br>→ r an diese „halbe“ Linie schreiben.<br>Merke: <strong>r = d : 2</strong>.'
   },
   {
     title: 'Aufgabe 9: Übertragen auf den Zylinder',
     prompt: 'Wie findest du oben am Zylinder den Mittelpunkt M, damit d/r stimmen?',
-    answer: '1) Zeichne zuerst d (Rand–Rand) oben ungefähr durch die Mitte. 2) Halbiere d → dort ist M. 3) Von M zum Rand zeichnen = r.'
+    answer: '<ol><li>Zeichne zuerst <strong>d</strong> (Rand–Rand) oben ungefähr durch die Mitte.</li><li>Halbiere <strong>d</strong> → dort ist <strong>M</strong>.</li><li>Von <strong>M</strong> zum Rand zeichnen = <strong>r</strong>.</li></ol>'
   },
   {
     title: 'Aufgabe 10: Kreisflächenformel',
     prompt: 'Wie lautet die Formel für die Kreisfläche?',
-    answer: 'G = π · r².'
+    answer: '<strong>G = π · r²</strong>'
   },
   {
     title: 'Aufgabe 11: Einsetzen',
     prompt: 'Setze die Kreisfläche in V = G · h ein.',
-    answer: 'V = G · h, G = πr² ⇒ V = (πr²) · h.'
+    answer: '<strong>V = G · h</strong><br><strong>G = π · r²</strong><br>⇒ <strong>V = (π · r²) · h</strong>'
   },
   {
     title: 'Aufgabe 12: Klammer auflösen',
     prompt: 'Klammer auflösen: Was bleibt stehen?',
-    answer: 'V = (πr²) · h = πr²h.'
+    answer: '<strong>V = (π · r²) · h = π · r² · h</strong>'
   }
 ];
 
@@ -92,11 +92,11 @@ function renderTipCards(containerId, from, to) {
       <div class="tip-card-inner">
         <div class="tip-face front">
                     <h3>${tip.title}</h3>
-          <p>${tip.prompt}</p>
+          <div class="tip-body">${tip.prompt}</div>
         </div>
         <div class="tip-face back">
                     <h3>${tip.title}</h3>
-          <p>${tip.answer}</p>
+          <div class="tip-body">${tip.answer}</div>
         </div>
       </div>
     `;
