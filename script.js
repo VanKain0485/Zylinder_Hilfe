@@ -3,81 +3,56 @@ import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.161.0/exampl
 
 const tips = [
   {
-    title: 'Aufgabe 1: Welche zwei Größen?',
-    prompt: 'Denk an Quader/Prisma: Welche zwei Angaben braucht man immer fürs Volumen?',
-    answer: 'Eine Größe beschreibt die Fläche unten → <strong>Grundfläche</strong>.<br>Eine Größe beschreibt „nach oben“ → <strong>Höhe</strong>.'
+    title: 'Aufgabe 1: Zwei Größen finden',
+    prompt: 'Welche zwei Größen brauchst du am Zylinder, um später das Volumen zu bestimmen?',
+    answer: 'Du brauchst <strong>Grundfläche</strong> (unten) und <strong>Höhe</strong> (nach oben).'
   },
   {
-    title: 'Aufgabe 1: Fachbegriffe finden',
-    prompt: 'Wie heißen die beiden Größen als Fachbegriffe?',
-    answer: 'Grundfläche und Höhe.'
+    title: 'Aufgabe 2: Abkürzungen',
+    prompt: 'Welche Abkürzungen passen zu den beiden Fachbegriffen?',
+    answer: '<strong>Grundfläche → G</strong><br><strong>Höhe → h</strong> (h klein).'
   },
   {
-    title: 'Aufgabe 2: Höhe markieren',
-    prompt: 'Wo ist die Höhe am Zylinder?',
-    answer: '<strong>Höhe</strong> = Strecke von unten nach oben außen am Mantel.<br>→ Pfeil/Linie setzen und „Höhe“ dazuschreiben.'
+    title: 'Aufgabe 3: Am Zylinder markieren',
+    prompt: 'Wo trägst du die Abkürzungen am Zylinder ein?',
+    answer: '<strong>h</strong> an die Strecke von unten nach oben außen am Mantel.<br><strong>G</strong> an die markierte Grundfläche unten (nicht ausmalen).'
   },
   {
-    title: 'Aufgabe 2: Grundfläche markieren',
-    prompt: 'Was ist die Grundfläche?',
-    answer: '<strong>Grundfläche</strong> = Fläche, auf der der Zylinder steht (unten).<br>→ Unten umranden/markieren und „Grundfläche“ dazuschreiben.'
+    title: 'Aufgabe 4/5: Volumen-Idee',
+    prompt: 'Wie lautet die Volumen-Regel erst in Worten und dann mit Abkürzungen?',
+    answer: 'Volumen = Grundfläche · Höhe<br><strong>V = G · h</strong>'
   },
   {
-    title: 'Aufgabe 3: Abkürzungen zuordnen',
-    prompt: 'Welche Abkürzungen nutzt man für Grundfläche und Höhe?',
-    answer: 'Grundfläche → <strong>G</strong><br>Höhe → <strong>h</strong> (h klein!)'
-  },
-  {
-    title: 'Aufgabe 5/6: Volumen-Idee übertragen',
-    prompt: 'Wie war die Regel beim Quader/Prisma?',
-    answer: 'Volumen = Grundfläche · Höhe<br>also <strong>V = G · h</strong>.'
-  },
-  {
-    title: 'Aufgabe 7: Form der Grundfläche',
+    title: 'Aufgabe 6: Form der Grundfläche',
     prompt: 'Welche Form hat die Grundfläche beim Zylinder?',
-    answer: 'Die Grundfläche ist ein Kreis.'
+    answer: 'Die Grundfläche ist ein <strong>Kreis</strong>.'
   },
   {
-    title: 'Aufgabe 8: Was muss im Kreis beschriftet werden?',
-    prompt: 'Welche drei Beschriftungen brauchst du am Kreis, um später G berechnen zu können?',
+    title: 'Aufgabe 7: Kreis beschriften',
+    prompt: 'Welche Beschriftungen brauchst du im Kreis, um später G berechnen zu können?',
     answer: '✅ Mittelpunkt <strong>M</strong><br>✅ Durchmesser <strong>d</strong><br>✅ Radius <strong>r</strong>'
   },
   {
-    title: 'Aufgabe 8: Durchmesser erkennen',
-    prompt: 'Welche Linie im Kreis ist der Durchmesser d?',
-    answer: 'Der Durchmesser ist die ganze Strecke von Rand zu Rand, die durch den Mittelpunkt M geht. → d an diese lange Linie schreiben.'
+    title: 'Aufgabe 8: Auf den Zylinder übertragen',
+    prompt: 'Wie überträgst du M, d und r auf die obere Grundfläche des Zylinders?',
+    answer: '<ol><li>Zuerst <strong>d</strong> als Linie von Rand zu Rand durch die Mitte zeichnen.</li><li>Die Mitte von <strong>d</strong> markieren → das ist <strong>M</strong>.</li><li>Von <strong>M</strong> zum Rand zeichnen → das ist <strong>r</strong>.</li></ol>'
   },
   {
-    title: 'Aufgabe 8: Radius erkennen',
-    prompt: 'Welche Linie im Kreis ist der Radius r?',
-    answer: 'Radius = Strecke vom Mittelpunkt <strong>M</strong> bis zum Rand (halber Durchmesser).<br>→ r an diese „halbe“ Linie schreiben.<br>Merke: <strong>r = d : 2</strong>.'
-  },
-  {
-    title: 'Aufgabe 9: Übertragen auf den Zylinder',
-    prompt: 'Wie findest du oben am Zylinder den Mittelpunkt M, damit d/r stimmen?',
-    answer: '<ol><li>Zeichne zuerst <strong>d</strong> (Rand–Rand) oben ungefähr durch die Mitte.</li><li>Halbiere <strong>d</strong> → dort ist <strong>M</strong>.</li><li>Von <strong>M</strong> zum Rand zeichnen = <strong>r</strong>.</li></ol>'
-  },
-  {
-    title: 'Aufgabe 10: Kreisflächenformel',
-    prompt: 'Wie lautet die Formel für die Kreisfläche?',
+    title: 'Aufgabe 9: Kreisflächenformel',
+    prompt: 'Wie lautet die Formel für die Kreisfläche G?',
     answer: '<strong>G = π · r²</strong>'
   },
   {
-    title: 'Aufgabe 11: Einsetzen',
-    prompt: 'Setze die Kreisfläche in V = G · h ein.',
-    answer: '<strong>V = G · h</strong><br><strong>G = π · r²</strong><br>⇒ <strong>V = (π · r²) · h</strong>'
-  },
-  {
-    title: 'Aufgabe 12: Klammer auflösen',
-    prompt: 'Klammer auflösen: Was bleibt stehen?',
-    answer: '<strong>V = (π · r²) · h = π · r² · h</strong>'
+    title: 'Aufgabe 10: Einsetzen in V = G · h',
+    prompt: 'Setze die Kreisfläche in die Volumenformel ein.',
+    answer: '<strong>V = G · h</strong><br><strong>G = π · r²</strong><br>⇒ <strong>V = π · r² · h</strong>'
   }
 ];
 
 const tipSections = [
   { id: 'tipGridA', from: 0, to: 4 },
-  { id: 'tipGridB', from: 4, to: 8 },
-  { id: 'tipGridC', from: 8, to: 14 }
+  { id: 'tipGridB', from: 4, to: 7 },
+  { id: 'tipGridC', from: 7, to: 9 }
 ];
 
 function renderTipCards(containerId, from, to) {
