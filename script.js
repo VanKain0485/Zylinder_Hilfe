@@ -274,14 +274,14 @@ initModel({
   }
 });
 
-const centerPoint = new THREE.Mesh(new THREE.SphereGeometry(0.075, 20, 20), new THREE.MeshStandardMaterial({ color: '#14b8a6' }));
+const centerPoint = new THREE.Mesh(new THREE.SphereGeometry(0.075, 20, 20), new THREE.MeshStandardMaterial({ color: '#111827' }));
 centerPoint.position.set(0, -1.2, 0);
 
-const diameterLine = new THREE.Mesh(new THREE.CylinderGeometry(0.02, 0.02, 2, 16), new THREE.MeshStandardMaterial({ color: '#e11d48' }));
+const diameterLine = new THREE.Mesh(new THREE.CylinderGeometry(0.02, 0.02, 2, 16), new THREE.MeshStandardMaterial({ color: '#1e3a8a' }));
 diameterLine.rotation.z = Math.PI / 2;
 diameterLine.position.set(0, -1.2, 0);
 
-const radiusLine = new THREE.Mesh(new THREE.CylinderGeometry(0.02, 0.02, 1, 16), new THREE.MeshStandardMaterial({ color: '#7c3aed' }));
+const radiusLine = new THREE.Mesh(new THREE.CylinderGeometry(0.02, 0.02, 1, 16), new THREE.MeshStandardMaterial({ color: '#dc2626' }));
 radiusLine.rotation.x = Math.PI / 2;
 radiusLine.position.set(0, -1.2, 0.5);
 

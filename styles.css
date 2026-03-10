@@ -7,9 +7,9 @@
   --ok: #0f766e;
   --height-color: #16a34a;
   --base-color: #f59e0b;
-  --center-color: #14b8a6;
-  --diameter-color: #e11d48;
-  --radius-color: #7c3aed;
+  --center-color: #111827;
+  --diameter-color: #1e3a8a;
+  --radius-color: #dc2626;
 }
 
 * { box-sizing: border-box; }
@@ -264,7 +264,11 @@ h2 { margin-top: 0; }
 .tip-body ol,
 .tip-body ul {
   margin: 0;
-  padding-left: 1.2rem;
+  padding-left: 1.1rem;
+}
+
+.tip-body ol {
+  list-style-position: inside;
 }
 
 .tip-body li {
@@ -325,4 +329,20 @@ footer {
   text-align: center;
   padding: 1.2rem;
   color: #475569;
+}
+
+
+@media (max-width: 480px) {
+  .tip-card {
+    height: 190px;
+  }
+
+  .tip-face h3 {
+    font-size: 0.98rem;
+  }
+
+  .tip-body {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
 }
