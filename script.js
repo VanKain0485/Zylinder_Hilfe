@@ -39,13 +39,13 @@ const tips = [
   },
   {
     title: 'Aufgabe 9: Kreisflächenformel',
-    prompt: 'Wie lautet die Formel für die Kreisfläche G?',
-    answer: '<strong>G = π · r²</strong>'
+    prompt: 'Welche zwei Teile brauchst du für die Kreisfläche G?',
+    answer: 'Denke an die Kreisregel: <strong>π</strong> und den <strong>Radius r</strong> im Quadrat.\n<br>Schreibe zuerst die Struktur auf: <strong>G = π · r²</strong>.'
   },
   {
     title: 'Aufgabe 10: Einsetzen in V = G · h',
-    prompt: 'Setze die Kreisfläche in die Volumenformel ein.',
-    answer: '<strong>V = G · h</strong><br><strong>G = π · r²</strong><br>⇒ <strong>V = π · r² · h</strong>'
+    prompt: 'Wie gehst du beim Einsetzen Schritt für Schritt vor?',
+    answer: '<ol><li>Starte mit <strong>V = G · h</strong>.</li><li>Ersetze nur <strong>G</strong> durch <strong>π · r²</strong>.</li><li>Schreibe ohne Klammer: <strong>V = π · r² · h</strong>.</li></ol>'
   }
 ];
 
@@ -277,7 +277,7 @@ initModel({
 const centerPoint = new THREE.Mesh(new THREE.SphereGeometry(0.075, 20, 20), new THREE.MeshStandardMaterial({ color: '#111827' }));
 centerPoint.position.set(0, -1.2, 0);
 
-const diameterLine = new THREE.Mesh(new THREE.CylinderGeometry(0.02, 0.02, 2, 16), new THREE.MeshStandardMaterial({ color: '#1e3a8a' }));
+const diameterLine = new THREE.Mesh(new THREE.CylinderGeometry(0.02, 0.02, 2, 16), new THREE.MeshStandardMaterial({ color: '#3b82f6' }));
 diameterLine.rotation.z = Math.PI / 2;
 diameterLine.position.set(0, -1.2, 0);
 
