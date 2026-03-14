@@ -4,48 +4,48 @@ import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.161.0/exampl
 const tips = [
   {
     title: 'Aufgabe 1: Zwei Größen finden',
-    prompt: 'Welche zwei Größen brauchst du am Zylinder, um später das Volumen zu bestimmen?',
-    answer: 'Du brauchst <strong>Grundfläche</strong> (unten) und <strong>Höhe</strong> (nach oben).'
+    prompt: 'Eine Größe ist eine Fläche. Die andere zeigt, wie hoch der Körper ist.',
+    answer: 'Du brauchst die <strong>Grundfläche</strong> und die <strong>Höhe</strong>.'
   },
   {
     title: 'Aufgabe 2: Abkürzungen',
-    prompt: 'Welche Abkürzungen passen zu den beiden Fachbegriffen?',
-    answer: '<strong>Grundfläche → G</strong><br><strong>Höhe → h</strong> (h klein).'
+    prompt: 'Beide Abkürzungen beginnen mit dem Anfangsbuchstaben des Fachbegriffs. Achte auf Groß- und Kleinschreibung.',
+    answer: '<strong>Grundfläche → G</strong><br><strong>Höhe → h</strong>'
   },
   {
     title: 'Aufgabe 3: Am Zylinder markieren',
-    prompt: 'Wo trägst du die Abkürzungen am Zylinder ein?',
-    answer: '<strong>h</strong> an die Strecke von unten nach oben außen am Mantel.<br><strong>G</strong> an die markierte Grundfläche unten (nicht ausmalen).'
+    prompt: 'Wo findest du die Strecke nach oben? Welche Fläche liegt unten?',
+    answer: '<strong>h</strong> an die Strecke von unten nach oben außen am Mantel<br><strong>G</strong> an die Grundfläche unten'
   },
   {
     title: 'Aufgabe 4/5: Volumen-Idee',
-    prompt: 'Wie lautet die Volumen-Regel erst in Worten und dann mit Abkürzungen?',
+    prompt: 'Denke an den Quader: Volumen entsteht aus einer Fläche und einer Höhe.',
     answer: 'Volumen = Grundfläche · Höhe<br><strong>V = G · h</strong>'
   },
   {
     title: 'Aufgabe 6: Form der Grundfläche',
-    prompt: 'Welche Form hat die Grundfläche beim Zylinder?',
+    prompt: 'Schau auf die Grundfläche des Zylinders: Welche Form hat sie?',
     answer: 'Die Grundfläche ist ein <strong>Kreis</strong>.'
   },
   {
     title: 'Aufgabe 7: Kreis beschriften',
-    prompt: 'Welche Beschriftungen brauchst du im Kreis, um später G berechnen zu können?',
-    answer: '✅ Mittelpunkt <strong>M</strong><br>✅ Durchmesser <strong>d</strong><br>✅ Radius <strong>r</strong>'
+    prompt: 'Du brauchst den Mittelpunkt und zwei Strecken, die mit dem Kreis zusammenhängen.',
+    answer: 'Du brauchst:<br><strong>M</strong> = Mittelpunkt<br><strong>d</strong> = Durchmesser<br><strong>r</strong> = Radius'
   },
   {
     title: 'Aufgabe 8: Auf den Zylinder übertragen',
-    prompt: 'Wie überträgst du M, d und r auf die obere Grundfläche des Zylinders?',
-    answer: '<ol><li>Zuerst <strong>d</strong> als Linie von Rand zu Rand durch die Mitte zeichnen.</li><li>Die Mitte von <strong>d</strong> markieren → das ist <strong>M</strong>.</li><li>Von <strong>M</strong> zum Rand zeichnen → das ist <strong>r</strong>.</li></ol>'
+    prompt: 'Fang mit d an. Dann findest du die Mitte. Erst danach zeichnest du r.',
+    answer: '<ol><li>Zeichne zuerst <strong>d</strong> als Linie von Rand zu Rand.</li><li>Markiere die Mitte von <strong>d</strong> → das ist <strong>M</strong>.</li><li>Zeichne <strong>r</strong> von <strong>M</strong> bis zum Rand.</li></ol>'
   },
   {
     title: 'Aufgabe 9: Kreisflächenformel',
-    prompt: 'Welche zwei Teile brauchst du für die Kreisfläche G?',
-    answer: 'Denke an die Kreisregel: <strong>π</strong> und den <strong>Radius r</strong> im Quadrat.\n<br>Schreibe zuerst die Struktur auf: <strong>G = π · r²</strong>.'
+    prompt: 'Die Formel besteht aus π und dem Radius r.',
+    answer: '<strong>G = π · r²</strong>'
   },
   {
     title: 'Aufgabe 10: Einsetzen in V = G · h',
-    prompt: 'Wie gehst du beim Einsetzen Schritt für Schritt vor?',
-    answer: '<ol><li>Starte mit <strong>V = G · h</strong>.</li><li>Ersetze nur <strong>G</strong> durch <strong>π · r²</strong>.</li><li>Schreibe ohne Klammer: <strong>V = π · r² · h</strong>.</li></ol>'
+    prompt: 'Nutze die Volumenformel V = G · h. Ersetze G durch das, was du in Aufgabe 9 herausgefunden hast.',
+    answer: '<strong>V = G · h</strong><br><strong>G = π · r²</strong><br>also:<br><strong>V = π · r² · h</strong>'
   }
 ];
 
