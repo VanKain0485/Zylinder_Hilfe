@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zylinderhilfe – Herleitung für die 8. Klasse</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.161.0/build/three.module.js"
+      }
+    }
+  </script>
+</head>
+<body>
+  <header class="hero">
+    <h1>Wie berechnen wir das Volumen eines Zylinders?</h1>
+  </header>
+
+  <main>
+    <section class="worksheet-box quickstart-box">
+      <h2>Kurzanleitung</h2>
+      <ul>
+        <li>Versuche die Aufgabe zuerst in Ruhe selbst zu lösen (mindestens 30–60 Sekunden).</li>
+        <li>Wenn du nicht weiterkommst, wähle gezielt die Hilfekachel, die genau zu deinem aktuellen Problem passt.</li>
+        <li>Lies zuerst den Tipp auf der Vorderseite und drehe die Karte erst um, wenn du wirklich eine konkretere Hilfe brauchst.</li>
+      </ul>
+    </section>
+
+    <section class="worksheet-box nav-box">
+      <h2>Zu welchem Thema brauchst du Hilfe?</h2>
+      <div class="anchor-nav">
+        <a class="anchor-chip" href="#bereich-groessen">Hilfe zu Größen am Zylinder</a>
+        <a class="anchor-chip" href="#bereich-abkuerzungen">Hilfe zu Kreis, Mittelpunkt, Durchmesser und Radius</a>
+        <a class="anchor-chip" href="#bereich-formel">Hilfe zur Zylinderformel</a>
+      </div>
+    </section>
+
+    <section id="bereich-groessen">
+      <h2>Hilfe zu Größen am Zylinder</h2>
+      <p class="small">Vorderseite lesen, dann auf die Karte klicken, um die Rückseite zu sehen.</p>
+      <div class="card-grid" id="tipGridA"></div>
+    </section>
+
+    <section class="model-box">
+      <h2>Interaktives 3D-Modell: Schritt 1</h2>
+      <p class="small">Drehe den Zylinder. Schalte Höhe und Grundfläche über die Legende ein und aus.</p>
+      <div id="modelContainer" class="model-container" aria-label="Interaktives 3D-Modell: Höhe und Grundfläche">
+        <div id="modelOverlay" class="model-overlay" aria-hidden="true"></div>
+      </div>
+      <div class="legend" id="legendControls">
+        <button class="legend-btn" data-key="height" type="button"><span class="dot height"></span>Höhe</button>
+        <button class="legend-btn" data-key="base" type="button"><span class="dot base"></span>Grundfläche</button>
+      </div>
+    </section>
+
+    <section id="bereich-abkuerzungen">
+      <h2>Hilfe zu Kreis, Mittelpunkt, Durchmesser und Radius</h2>
+      <p class="small">Diese Karten helfen beim Kreis und den Beschriftungen M, d, r.</p>
+      <div class="card-grid" id="tipGridB"></div>
+    </section>
+
+    <section id="bereich-kreis" class="model-box">
+      <h2>Interaktives 3D-Modell: Schritt 2</h2>
+      <p class="small">Hier siehst du zusätzlich Mittelpunkt, Durchmesser und Radius der Grundfläche in verschiedenen Farben.</p>
+      <div id="modelContainer2" class="model-container" aria-label="Interaktives 3D-Modell: Mittelpunkt, Durchmesser und Radius">
+        <div id="modelOverlay2" class="model-overlay" aria-hidden="true"></div>
+      </div>
+      <div class="legend" id="legendControls2">
+        <button class="legend-btn" data-key="center" type="button"><span class="dot center"></span>Mittelpunkt M</button>
+        <button class="legend-btn" data-key="diameter" type="button"><span class="dot diameter"></span>Durchmesser d</button>
+        <button class="legend-btn" data-key="radius" type="button"><span class="dot radius"></span>Radius r</button>
+      </div>
+    </section>
+
+    <section id="bereich-formel">
+      <h2>Hilfe zur Zylinderformel</h2>
+      <p class="small">Zum Einsetzen der Kreisfläche und zur fertigen Zylinderformel.</p>
+      <div class="card-grid" id="tipGridC"></div>
+    </section>
+
+    <section class="check-box">
+      <h2>Selbstcheck: Kannst du es erklären?</h2>
+      <ol class="selfcheck-list">
+        <li>Welche zwei Größen brauchst du grundsätzlich, um Volumen zu berechnen?</li>
+        <li>Welche Form hat die Grundfläche beim Zylinder – und wie heißt die passende Flächenformel?</li>
+        <li>Woran erkennst du den Durchmesser <strong>d</strong> im Kreis?</li>
+        <li>Wie hängen Radius <strong>r</strong> und Durchmesser <strong>d</strong> zusammen?</li>
+        <li>Warum wird bei der Volumenformel am Ende mit <strong>h</strong> multipliziert?</li>
+      </ol>
+      <button id="showSolution" type="button">Lösung einblenden</button>
+      <div id="solution" class="solution hidden" aria-live="polite">
+        <p><strong>Lösung (zusammengefasst):</strong></p>
+        <ol class="solution-list">
+          <li>Grundfläche und Höhe.</li>
+          <li>Kreis; <strong>G = π · r<sup>2</sup></strong>.</li>
+          <li>Durchmesser <strong>d</strong>: Rand–Rand durch den Mittelpunkt <strong>M</strong>.</li>
+          <li><strong>r = d : 2</strong> bzw. <strong>d = 2 · r</strong>.</li>
+          <li>Weil <strong>Volumen = Grundfläche · Höhe</strong> gilt.</li>
+          <li>Endformel: <strong>V = G · h = π · r<sup>2</sup> · h</strong>.</li>
+        </ol>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Viel Erfolg beim Herleiten! 💡</p>
+  </footer>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>
