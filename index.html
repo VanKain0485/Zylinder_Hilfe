@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zylindervolumen – Probe 8. Klasse</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <div class="hero__content">
+        <p class="eyebrow">Mathematik · 8. Klasse · Mittelschule Bayern</p>
+        <h1>Zylindervolumen – Übungsseite für die Probe</h1>
+        <p class="intro">
+          Bearbeite zu jedem Zylinder das Volumen. Unter jeder kurzen Angabe findest du ein drehbares 3D-Modell.
+          Mit der Maus oder dem Touchpad kannst du das Modell drehen und mit dem Mausrad hinein- und herauszoomen.
+        </p>
+      </div>
+    </header>
+
+    <main class="task-grid">
+      <section class="task-card">
+        <div class="task-card__text">
+          <span class="task-number">Aufgabe 1</span>
+          <h2>Stehender Zylinder mit Radius</h2>
+          <p>Berechne das Volumen des Zylinders.</p>
+          <ul>
+            <li>Radius: <strong>r = 3 cm</strong></li>
+            <li>Höhe: <strong>h = 8 cm</strong></li>
+          </ul>
+        </div>
+        <div id="scene-radius-vertical" class="model-frame" aria-label="3D-Modell eines stehenden Zylinders mit Radius und Höhe"></div>
+      </section>
+
+      <section class="task-card">
+        <div class="task-card__text">
+          <span class="task-number">Aufgabe 2</span>
+          <h2>Stehender Zylinder mit Durchmesser</h2>
+          <p>Berechne das Volumen des Zylinders.</p>
+          <ul>
+            <li>Durchmesser: <strong>d = 6 cm</strong></li>
+            <li>Höhe: <strong>h = 9 cm</strong></li>
+          </ul>
+        </div>
+        <div id="scene-diameter-vertical" class="model-frame" aria-label="3D-Modell eines stehenden Zylinders mit Durchmesser und Höhe"></div>
+      </section>
+
+      <section class="task-card">
+        <div class="task-card__text">
+          <span class="task-number">Aufgabe 3</span>
+          <h2>Liegender Zylinder mit Radius</h2>
+          <p>Berechne das Volumen des Zylinders.</p>
+          <ul>
+            <li>Radius: <strong>r = 2,5 cm</strong></li>
+            <li>Höhe: <strong>h = 10 cm</strong></li>
+          </ul>
+        </div>
+        <div id="scene-radius-horizontal" class="model-frame" aria-label="3D-Modell eines liegenden Zylinders mit Radius und Höhe"></div>
+      </section>
+
+      <section class="task-card">
+        <div class="task-card__text">
+          <span class="task-number">Aufgabe 4</span>
+          <h2>Liegender Zylinder mit Durchmesser</h2>
+          <p>Berechne das Volumen des Zylinders.</p>
+          <ul>
+            <li>Durchmesser: <strong>d = 8 cm</strong></li>
+            <li>Höhe: <strong>h = 7 cm</strong></li>
+          </ul>
+        </div>
+        <div id="scene-diameter-horizontal" class="model-frame" aria-label="3D-Modell eines liegenden Zylinders mit Durchmesser und Höhe"></div>
+      </section>
+    </main>
+
+    <footer class="page-footer">
+      <p>Merke: <strong>V = G · h = π · r² · h</strong></p>
+    </footer>
+
+    <script src="https://unpkg.com/three@0.161.0/build/three.min.js"></script>
+    <script src="https://unpkg.com/three@0.161.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
